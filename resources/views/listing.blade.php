@@ -87,7 +87,7 @@
 									<dd>
 										<ol>
 											@foreach ($categories as $cat)												
-											<li><a href="{{ route('category.filter', ['id' => $cat->id]) }}">{{ $cat->category }}</a></li>
+											<li><a href="{{ route('listing', ['category_id' => $cat->id]) }}">{{ $cat->category }}</a></li>
 											@endforeach
 										</ol>
 									</dd>

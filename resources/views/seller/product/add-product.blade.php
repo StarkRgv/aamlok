@@ -1,6 +1,13 @@
 @extends('seller.layout.app')
 
 @section('content')
+@if (session()->has('success'))
+    @component('components.notify-msg', ['class' => 'bg-success'])
+      @slot('message')
+        {{ session('success') }}
+      @endslot
+    @endcomponent
+  @endif
 <!-- Container-fluid starts-->
 <div class="container-fluid">
 <div class="page-header">
@@ -375,11 +382,14 @@
 </div>
 </div>
 </div>
-            <!-- Container-fluid Ends-->
+<script src="{{ asset('seller/js/jquery-3.3.1.min.js') }}"></script>
+<script>
+$(".notification").animate({right: '40px'});
+          setTimeout(function(){
+          $('.notification').slideUp(1000)}, 2500);
+</script>
+<!-- Container-fluid Ends-->
 
 
-@push('scripts')
-    
-@endpush
 
 @endsection

@@ -23,14 +23,21 @@
     </div>
 </div>
 <!-- Container-fluid Ends-->
-
+@section('content')
+  @if (session()->has('success'))
+    @component('components.notify-msg', ['class' => 'bg-success'])
+      @slot('message')
+        {{ session('success') }}
+      @endslot
+    @endcomponent
+  @endif
 <!-- Container-fluid starts-->
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5>Products Category</h5>
+                    <h5>Products Category </h5>
                 </div>
                 <div class="card-body">
                     <div class="btn-popup pull-right">
@@ -105,5 +112,23 @@
         </div>
     </div>
 </div>
+
+<script src="{{ asset('seller/js/jquery-3.3.1.min.js') }}"></script>
+<script>
+$(".notification").animate({right: '40px'});
+          setTimeout(function(){
+          $('.notification').slideUp(1000)}, 2500);
+</script>
+
+@if (count($errors) > 0)
+<script type="text/javascript">
+
+    $( document ).ready(function() {
+         $('#catModal').modal('show');
+    });
+</script>
+@endif
 <!-- Container-fluid Ends-->
-@endsection-
+@endsection
+
+
