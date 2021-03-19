@@ -10,6 +10,16 @@ use Illuminate\Support\Facades\Validator;
 class CategoryController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -49,7 +59,7 @@ class CategoryController extends Controller
             $data->gender_id = $request->gender;
             $data->save();
     
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Category Added Successfullly');
     }
 
     /**

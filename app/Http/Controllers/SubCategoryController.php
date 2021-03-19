@@ -11,6 +11,16 @@ use Illuminate\Support\Facades\Validator;
 class SubCategoryController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -52,7 +62,7 @@ class SubCategoryController extends Controller
             $data->gender_id = $request->gender;
             $data->save();
     
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Sub-Category Added Successfullly');
     }
 
     /**
