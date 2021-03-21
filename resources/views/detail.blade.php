@@ -30,6 +30,12 @@
                         <a href="{{ url('/') }}"><img src="{{ asset('images/home_1/logo.png') }}" alt="" /></a>
                     </div>
                 </div>
+				<div class="search-form">
+					<form action="{{ route('search') }}" method="get">
+						<input type="text" name="search_query" value="Search" onfocus="if (this.value==this.defaultValue) this.value = ''" onblur="if (this.value=='') this.value = this.defaultValue"  />
+						<input type="submit" value="" />
+					</form>
+				</div>
             </div>
             <div class="top-nav">
                 <div class="row">
@@ -39,6 +45,169 @@
                                 <li class="menu-item-has-children">
                                     <a href="{{ url('/') }}">Home</a>
                                 </li>
+								<li class="has-mega-menu">
+									<a href="#">Filters</a>
+									<ul class="sub-menu">
+										<li>
+											<div class="wrap-mega-menu">
+												<div class="row">
+													<div class="col-md-3 col-sm-3 col-xs-12">
+														<div class="mega-menu-slider-brand">
+															<h2>Men</h2>
+															<div class="wrap-item">
+																<div class="item">
+																	<div class="inner-brand">
+																		<ul>
+																			<li><a href="#">Tops</a></li>
+																			<li><a href="#">Sweaters</a></li>
+																			<li><a href="#">Bottoms</a></li>
+																			<li><a href="#">Dresses</a></li>
+																			<li><a href="#">Coats &amp; Jackets</a></li>
+																			<li><a href="#">Scarves</a></li>
+																			<li><a href="#">Pants</a></li>
+																		</ul>
+																	</div>
+																</div>
+																<div class="item">
+																	<div class="inner-brand">
+																		<a href="#"><img src="images/banner/logo-brand-01.png" alt=""/></a>
+																		<a href="#"><img src="images/banner/logo-brand-03.png" alt=""/></a>
+																		<a href="#"><img src="images/banner/logo-brand-02.png" alt=""/></a>
+																	</div>
+																</div>
+																<div class="item">
+																	<div class="inner-brand">
+																		<a href="#"><img src="images/banner/logo-brand-02.png" alt=""/></a>
+																		<a href="#"><img src="images/banner/logo-brand-03.png" alt=""/></a>
+																		<a href="#"><img src="images/banner/logo-brand-01.png" alt=""/></a>
+																	</div>
+																</div>
+															</div>
+															<div class="owl-direct-nav">
+																<a class="prev" href="#"><i class="fa fa-arrow-circle-left"></i></a>
+																<a class="next" href="#"><i class="fa fa-arrow-circle-right"></i></a>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3 col-sm-3 col-xs-12">
+														<div class="mega-menu-slider-brand">
+															<h2>Women</h2>
+															<div class="wrap-item">
+																<div class="item">
+																	<div class="inner-brand">
+																		<ul>
+																			<li><a href="#">Tops</a></li>
+																			<li><a href="#">Sweaters</a></li>
+																			<li><a href="#">Bottoms</a></li>
+																			<li><a href="#">Dresses</a></li>
+																			<li><a href="#">Coats &amp; Jackets</a></li>
+																			<li><a href="#">Scarves</a></li>
+																			<li><a href="#">Pants</a></li>
+																		</ul>
+																	</div>
+																</div>
+																<div class="item">
+																	<div class="inner-brand">
+																		<a href="#"><img src="images/banner/logo-brand-01.png" alt=""/></a>
+																		<a href="#"><img src="images/banner/logo-brand-03.png" alt=""/></a>
+																		<a href="#"><img src="images/banner/logo-brand-02.png" alt=""/></a>
+																	</div>
+																</div>
+																<div class="item">
+																	<div class="inner-brand">
+																		<a href="#"><img src="images/banner/logo-brand-02.png" alt=""/></a>
+																		<a href="#"><img src="images/banner/logo-brand-03.png" alt=""/></a>
+																		<a href="#"><img src="images/banner/logo-brand-01.png" alt=""/></a>
+																	</div>
+																</div>
+															</div>
+															<div class="owl-direct-nav">
+																<a class="prev" href="#"><i class="fa fa-arrow-circle-left"></i></a>
+																<a class="next" href="#"><i class="fa fa-arrow-circle-right"></i></a>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3 col-sm-3 col-xs-12">
+														<div class="mega-menu-slider-brand">
+															<h2>Boys</h2>
+															<div class="wrap-item">
+																<div class="item">
+																	<div class="inner-brand">
+																		<ul>
+																			<li><a href="#">Tops</a></li>
+																			<li><a href="#">Sweaters</a></li>
+																			<li><a href="#">Bottoms</a></li>
+																			<li><a href="#">Dresses</a></li>
+																			<li><a href="#">Coats &amp; Jackets</a></li>
+																			<li><a href="#">Scarves</a></li>
+																			<li><a href="#">Pants</a></li>
+																		</ul>
+																	</div>
+																</div>
+																<div class="item">
+																	<div class="inner-brand">
+																		<a href="#"><img src="images/banner/logo-brand-01.png" alt=""/></a>
+																		<a href="#"><img src="images/banner/logo-brand-03.png" alt=""/></a>
+																		<a href="#"><img src="images/banner/logo-brand-02.png" alt=""/></a>
+																	</div>
+																</div>
+																<div class="item">
+																	<div class="inner-brand">
+																		<a href="#"><img src="images/banner/logo-brand-02.png" alt=""/></a>
+																		<a href="#"><img src="images/banner/logo-brand-03.png" alt=""/></a>
+																		<a href="#"><img src="images/banner/logo-brand-01.png" alt=""/></a>
+																	</div>
+																</div>
+															</div>
+															<div class="owl-direct-nav">
+																<a class="prev" href="#"><i class="fa fa-arrow-circle-left"></i></a>
+																<a class="next" href="#"><i class="fa fa-arrow-circle-right"></i></a>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3 col-sm-3 col-xs-12">
+														<div class="mega-menu-slider-brand">
+															<h2>Girls</h2>
+															<div class="wrap-item">
+																<div class="item">
+																	<div class="inner-brand">
+																		<ul>
+																			<li><a href="#">Tops</a></li>
+																			<li><a href="#">Sweaters</a></li>
+																			<li><a href="#">Bottoms</a></li>
+																			<li><a href="#">Dresses</a></li>
+																			<li><a href="#">Coats &amp; Jackets</a></li>
+																			<li><a href="#">Scarves</a></li>
+																			<li><a href="#">Pants</a></li>
+																		</ul>
+																	</div>
+																</div>
+																<div class="item">
+																	<div class="inner-brand">
+																		<a href="#"><img src="images/banner/logo-brand-01.png" alt=""/></a>
+																		<a href="#"><img src="images/banner/logo-brand-03.png" alt=""/></a>
+																		<a href="#"><img src="images/banner/logo-brand-02.png" alt=""/></a>
+																	</div>
+																</div>
+																<div class="item">
+																	<div class="inner-brand">
+																		<a href="#"><img src="images/banner/logo-brand-02.png" alt=""/></a>
+																		<a href="#"><img src="images/banner/logo-brand-03.png" alt=""/></a>
+																		<a href="#"><img src="images/banner/logo-brand-01.png" alt=""/></a>
+																	</div>
+																</div>
+															</div>
+															<div class="owl-direct-nav">
+																<a class="prev" href="#"><i class="fa fa-arrow-circle-left"></i></a>
+																<a class="next" href="#"><i class="fa fa-arrow-circle-right"></i></a>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</li>
                                 <li class="has-mega-menu">
                                     <a href="{{ route('listing') }}">Listing</a>
                                 </li>
@@ -48,23 +217,21 @@
                     </div>
                     <div class="col-md-2 col-sm-12 col-xs-6">
                         <div class="header-info">
-                            @guest
-                            <div class="box-account-lc box">
-                                <a href="{{ route('login') }}" class="link-user-top">Login</a>
-                            </div>
-                            <div class="block-cart box">
-                                <a href="{{ route('register') }}" class="link-cart-top">Register </a>        
-                                <div class="block-content box-inner">
-                                </div>
-                            </div>
-                            @endauth
-                            @if(auth()->user())
-                            
-                            <div class="box-account-lc box">
-                                <a href="{{ route('home') }}" class="link-user-top">{{ auth()->user()->name }}</a>
-                            </div>
-                            @endauth
-                        </div>
+							<div class="box-account-lc box">
+								<a href="#" class="link-user-top"><img src="images/home_1/icon-user.png" alt="" /></a>
+								<div class="box-inner" style="width: auto">
+									<ul class="links">
+        								@guest
+										<li class="first"><a href="{{ route('login') }}" class="link-user-top">Login</a></li>
+										<li><a href="{{ route('register') }}" class="link-cart-top">Register </a></li>
+										@endauth
+        								@if(auth()->user())
+										<li><a href="{{ route('home') }}" class="link-user-top">{{ auth()->user()->name }}</a></li>
+										@endauth
+									</ul>
+								</div>
+							</div>
+						</div>
                         <!-- End Header Info -->
                     </div>
                 </div>
