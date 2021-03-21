@@ -261,18 +261,25 @@
 									<dt>Price</dt>
 									<dd class="block-price">
 										<div class="price">
-											<div class="range-wrap">
+											{{-- <div class="range-wrap">
 												<div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="slider-range">
 													<div style="left: 0%; width: 100%;" class="ui-slider-range ui-widget-header"></div>
 													<a style="left: 0%;" class="ui-slider-handle ui-state-default ui-corner-all" href="#"></a>
 													<a style="left: 100%;" class="ui-slider-handle ui-state-default ui-corner-all" href="#"></a>
 												</div>
-											</div>
+											</div> --}}
+											<form action="{{ route('search.price') }}" method="GET">
 											<div class="text-box">
-												<div class="price-from"><span>$</span><input type="text" name="min" id="minPrice" class="priceTextBox pl" value="400"></div>
-												<div class="price-to"><input type="text" name="max" id="maxPrice" class="priceTextBox pr" value="1000"></div>
-												<a class="go" href="javascript:void(0)">Go</a>
+													<div class="price-from">
+														<span>₹</span>
+														<input type="text" name="min" id="minPrice" class="priceTextBox pl" value="">
+													</div>
+													<div class="price-to">
+														<input type="text" name="max" id="maxPrice" class="priceTextBox pr" value="">
+													</div>
+												<button class="go" type="submit">Go</button>												
 											</div>
+										</form>
 										</div>
 									</dd>
 									<dt>Color</dt>
@@ -670,7 +677,7 @@
 									</li>
 								
 								@empty
-									<h1 class="text-center">No data Available</h1>
+									<h1 class="text-center">No Product Available</h1>
 								@endforelse
 								
 							</ol>

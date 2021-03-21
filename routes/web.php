@@ -42,3 +42,4 @@ Route::resource('sub-category', 'App\Http\Controllers\SubCategoryController', ['
 
 // Search 
 Route::get('/search', [App\Http\Controllers\SearchController::class, 'search'])->name('search');
+Route::get('/search-price', [App\Http\Controllers\SearchController::class, 'searchByPrice'])->name('search.price');
