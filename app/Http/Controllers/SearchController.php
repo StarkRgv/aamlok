@@ -18,4 +18,16 @@ class SearchController extends Controller
         $products = Product::where('title', 'like', '%'.$search_query.'%')->get();
         return view('listing', ['categories' => $categories, 'products' => $products, 'genders' => $genders]);
     }
+
+    public function searchByPrice(Request $request)
+    {   
+        $categories = Category::get();
+    	$genders = Gender::get();
+
+        $min = $request->min;
+        $max = $request->max;
+
+        $products = Product::whereBetween('selling_price', [$min, $max])->get();
+        return view('listing', ['categories' => $categories, 'products' => $products, 'genders' => $genders]);
+    }
 }
