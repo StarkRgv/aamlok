@@ -34,6 +34,8 @@
 
     <!-- App css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('seller/css/admin.css') }}">
+
+    <script src="https://use.fontawesome.com/b1ecf956a8.js"></script>
 </head>
 
 <body>

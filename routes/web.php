@@ -35,7 +35,10 @@ Route::get('/product-list', [App\Http\Controllers\ProductController::class, 'ope
 Route::get('/product-details/{product?}', [App\Http\Controllers\ProductController::class, 'openProductDetails'])->name('product.detail');
 
 // Category
-Route::resource('category', 'App\Http\Controllers\CategoryController', ['only' => [ 'index', 'store' ]]);
+Route::resource('category', 'App\Http\Controllers\CategoryController', ['only' => [ 'index', 'store', 'update' ,'destroy']]);
 
 // Sub-Category
-Route::resource('sub-category', 'App\Http\Controllers\SubCategoryController', ['only' => [ 'index', 'store' ]]);
+Route::resource('sub-category', 'App\Http\Controllers\SubCategoryController', ['only' => [ 'index', 'store', 'update' ,'destroy' ]]);
+
+// Search 
+Route::get('/search', [App\Http\Controllers\SearchController::class, 'search'])->name('search');
