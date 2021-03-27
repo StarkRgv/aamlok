@@ -1,17 +1,20 @@
 
         <!-- Page Sidebar Start-->
         <div class="page-sidebar">
-            
+
             <div class="sidebar custom-scrollbar">
                 <div class="sidebar-user text-center">
                     <div><img class="img-60 rounded-circle" src="{{ asset('seller/images/dashboard/man.png') }}" alt="#">
                     </div>
-                    <h6 class="mt-3 f-14">JOHN</h6>
-                    <p>general manager.</p>
+                    <h6 class="mt-3 f-14">{{ auth()->user()->name }}</h6>
                 </div>
                 <ul class="sidebar-menu">
                     <li><a class="sidebar-header" href="{{ route('home') }}"><i data-feather="home"></i><span>Dashboard</span></a></li>
-                    <li><a class="sidebar-header" href="#"><i data-feather="box"></i> <span>Products</span><i class="fa fa-angle-right pull-right"></i></a>
+                    <li><a class="sidebar-header" href="{{ route('category.index') }}"><i data-feather="home"></i><span>Category</span></a></li>
+                    <li><a class="sidebar-header" href="{{ route('sub-category.index') }}"><i data-feather="home"></i><span>Sub Category</span></a></li>
+                    <li><a class="sidebar-header" href="{{ route('product.list') }}"><i data-feather="home"></i><span>Product List</span></a></li>
+                    <li><a class="sidebar-header" href="{{ route('product') }}"><i data-feather="home"></i><span>Add Product</span></a></li>
+                    {{-- <li><a class="sidebar-header" href="#"><i data-feather="box"></i> <span>Products</span><i class="fa fa-angle-right pull-right"></i></a>
                         <ul class="sidebar-submenu">
                             <li>
                                 <a href="#"><i class="fa fa-circle"></i>
@@ -91,14 +94,14 @@
 <li><a class="sidebar-header" href="invoice.html"><i data-feather="archive"></i><span>Invoice</span></a>
                     </li>
                     <li><a class="sidebar-header" href="login.html"><i data-feather="log-in"></i><span>Login</span></a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>
         <!-- Page Sidebar Ends-->
 
         <!-- Right sidebar Start-->
-        <div class="right-sidebar" id="right_side_bar">
+        {{-- <div class="right-sidebar" id="right_side_bar">
             <div>
                 <div class="container p-0">
                     <div class="modal-header p-l-20 p-r-20">
@@ -169,5 +172,5 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- Right sidebar Ends-->

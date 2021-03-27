@@ -2,7 +2,7 @@
     <!-- Page Header Start-->
     <div class="page-main-header">
         <div class="main-header-right row">
-            
+
             <div class="mobile-sidebar">
                 <div class="media-body text-right switch-sm">
                     <label class="switch"><a href="#"><i id="sidebar-toggle" data-feather="align-left"></i></a></label>
@@ -13,7 +13,7 @@
                     <li>
                         <a href="{{ url('/') }}">Home</a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <form class="form-inline search-form">
                             <div class="form-group">
                                 <input class="form-control-plaintext" type="search" placeholder="Search.."><span class="d-sm-none mobile-search"><i data-feather="search"></i></span>
@@ -21,7 +21,7 @@
                         </form>
                     </li>
                     <li><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize-2"></i></a></li>
-                    
+
                     <li class="onhover-dropdown"><i data-feather="bell"></i><span class="badge badge-pill badge-primary pull-right notification-badge">3</span><span class="dot"></span>
                         <ul class="notification-dropdown onhover-show-div p-0">
                             <li>Notification <span class="badge badge-pill badge-primary pull-right">3</span></li>
@@ -52,16 +52,16 @@
                             <li class="bg-light txt-dark"><a href="#">All</a> notification</li>
                         </ul>
                     </li>
-                    <li><a href="#"><i class="right_side_toggle" data-feather="message-square"></i><span class="dot"></span></a></li>
+                    <li><a href="#"><i class="right_side_toggle" data-feather="message-square"></i><span class="dot"></span></a></li> --}}
                     <li class="onhover-dropdown">
                         <div class="media align-items-center"><img class="align-self-center pull-right img-50 rounded-circle" src="{{ asset('seller/images/dashboard/man.png') }}" alt="header-user">
                             <div class="dotted-animation"><span class="animate-circle"></span><span class="main-circle"></span></div>
                         </div>
                         <ul class="profile-dropdown onhover-show-div p-20">
                             <li><a href="#"><i data-feather="user"></i>Edit Profile</a></li>
-                            <li><a href="#"><i data-feather="mail"></i>Inbox</a></li>
+                            {{-- <li><a href="#"><i data-feather="mail"></i>Inbox</a></li>
                             <li><a href="#"><i data-feather="lock"></i>Lock Screen</a></li>
-                            <li><a href="#"><i data-feather="settings"></i>Settings</a></li>
+                            <li><a href="#"><i data-feather="settings"></i>Settings</a></li> --}}
                             <li><a href="{{ route('logout') }}"><i data-feather="log-out"></i>Logout</a></li>
                         </ul>
                     </li>

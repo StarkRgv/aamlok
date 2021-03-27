@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
 <head>
-    
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -256,68 +256,68 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="inner-box-banner-adv odd bottom-right">
-                                <a href="#" class="banner-adv-thumb-link"><img src="images/home_1/ad_01.png" alt="" /></a>
+                                <a href="{{ route('listing', ['category_id' => 1]) }}" class="banner-adv-thumb-link"><img src="images/home_1/ad_01.png" alt="" /></a>
                                 <div class="text-adv-intro">
                                     <h2>Men’s</h2>
                                     <h3>Collection</h3>
                                 </div>
-                                <div class="box-search-adv">
-                                    
+                                {{-- <div class="box-search-adv">
+
                                 </div>
                                 <a href="#" class="box-search-adv-link"><i class="fa fa-search"></i></a>
                                 <div class="text-adv-hidden">
                                     <p>Many students are cash conteos</p>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="inner-box-banner-adv even bottom-left">
-                                <a href="#" class="banner-adv-thumb-link"><img src="images/home_1/ad_02.png" alt="" /></a>
+                                <a href="{{ route('listing', ['category_id' => 2]) }}" class="banner-adv-thumb-link"><img src="images/home_1/ad_02.png" alt="" /></a>
                                 <div class="text-adv-intro">
                                     <h2>Girl</h2>
                                     <h3>Fashion</h3>
                                 </div>
-                                <div class="box-search-adv">
-                                    
+                                {{-- <div class="box-search-adv">
+
                                 </div>
                                 <a href="#" class="box-search-adv-link"><i class="fa fa-search"></i></a>
                                 <div class="text-adv-hidden">
                                     <p>Many students are cash conteos</p>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="inner-box-banner-adv odd top-right">
-                                <a href="#" class="banner-adv-thumb-link"><img src="images/home_1/ad_03.png" alt="" /></a>
+                                <a href="{{ route('listing', ['category_id' => 3]) }}" class="banner-adv-thumb-link"><img src="images/home_1/ad_03.png" alt="" /></a>
                                 <div class="text-adv-intro">
-                                    <h2>Shoes</h2>
-                                    <h3>Collection</h3>
+                                    <h2>Kids</h2>
+                                    <h3>Boys</h3>
                                 </div>
-                                <div class="box-search-adv">
-                                    
+                                {{-- <div class="box-search-adv">
+
                                 </div>
                                 <a href="#" class="box-search-adv-link"><i class="fa fa-search"></i></a>
                                 <div class="text-adv-hidden">
                                     <p>Many students are cash conteos</p>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="inner-box-banner-adv even top-left">
-                                <a href="#" class="banner-adv-thumb-link"><img src="images/home_1/ad_04.png" alt="" /></a>
+                                <a href="{{ route('listing', ['category_id' => 4]) }}" class="banner-adv-thumb-link"><img src="images/home_1/ad_04.png" alt="" /></a>
                                 <div class="text-adv-intro">
-                                    <h2>Chip</h2>
-                                    <h3>Women’s</h3>
+                                    <h2>Kids</h2>
+                                    <h3>Girls</h3>
                                 </div>
-                                <div class="box-search-adv">
-                                    
+                                {{-- <div class="box-search-adv">
+
                                 </div>
                                 <a href="#" class="box-search-adv-link"><i class="fa fa-search"></i></a>
                                 <div class="text-adv-hidden">
                                     <p>Many students are cash conteos</p>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -3049,8 +3049,8 @@
             <div class="container">
                 <div class="content-quick-search">
                     <label>Quick link:</label>
-                    <a href="#">#</a>     
-                    <a href="#">A</a>        
+                    <a href="#">#</a>
+                    <a href="#">A</a>
                     <a href="#">B</a>
                     <a href="#">C</a>
                     <a href="#">D</a>
@@ -3113,6 +3113,6 @@
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/owl.carousel.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/theme.js') }}"></script>
-</div>  
+</div>
 </body>
 </html>
