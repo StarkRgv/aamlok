@@ -8,7 +8,7 @@
                         <div class="col-lg-6">
                             <div class="page-header-left">
                                 <h3>Dashboard
-                                    <small>Multikart Admin panel</small>
+                                    {{-- <small>Multikart Admin panel</small> --}}
                                 </h3>
                             </div>
                         </div>
@@ -33,8 +33,8 @@
                                     <div class="icons-widgets col-4">
                                         <div class="align-self-center text-center"><i data-feather="navigation" class="font-warning"></i></div>
                                     </div>
-                                    <div class="media-body col-8"><span class="m-0">Earnings</span>
-                                        <h3 class="mb-0">$ <span class="counter">6659</span><small> This Month</small></h3>
+                                    <div class="media-body col-8"><span class="m-0">Category</span>
+                                        <h3 class="mb-0"><span class="counter">{{ $category_count }}</span></h3>
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                                         <div class="align-self-center text-center"><i data-feather="box" class="font-secondary"></i></div>
                                     </div>
                                     <div class="media-body col-8"><span class="m-0">Products</span>
-                                        <h3 class="mb-0">$ <span class="counter">9856</span><small> This Month</small></h3>
+                                        <h3 class="mb-0"><span class="counter">{{ $product_count }}</span></h3>
                                     </div>
                                 </div>
                             </div>
@@ -61,8 +61,8 @@
                                     <div class="icons-widgets col-4">
                                         <div class="align-self-center text-center"><i data-feather="message-square" class="font-primary"></i></div>
                                     </div>
-                                    <div class="media-body col-8"><span class="m-0">Messages</span>
-                                        <h3 class="mb-0">$ <span class="counter">893</span><small> This Month</small></h3>
+                                    <div class="media-body col-8"><span class="m-0">Sub-Category</span>
+                                        <h3 class="mb-0"><span class="counter">{{ $subCategory_count }}</span></h3>
                                     </div>
                                 </div>
                             </div>
@@ -75,14 +75,14 @@
                                     <div class="icons-widgets col-4">
                                         <div class="align-self-center text-center"><i data-feather="users" class="font-danger"></i></div>
                                     </div>
-                                    <div class="media-body col-8"><span class="m-0">New Vendors</span>
-                                        <h3 class="mb-0">$ <span class="counter">45631</span><small> This Month</small></h3>
+                                    <div class="media-body col-8"><span class="m-0">Users</span>
+                                        <h3 class="mb-0"><span class="counter">{{ $user_count }}</span></h3>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
 
                 </div>
             </div>
