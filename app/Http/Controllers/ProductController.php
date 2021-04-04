@@ -28,15 +28,15 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    
+
 
 
     public function openAddProduct()
-    {   
+    {
         $categories = Category::get();
         $subCategories = SubCategory::get();
         $genders = Gender::get();
-        return view('seller.product.add-product', ['subCategories' => $subCategories, 'categories' => $categories, 'genders' => $genders]);
+        return view('seller.dashboard.add-product', ['subCategories' => $subCategories, 'categories' => $categories, 'genders' => $genders]);
     }
 
     public function storeProduct(Request $request)
@@ -67,7 +67,7 @@ class ProductController extends Controller
         ]);
 
         if($request->file()) {
-            $image = $request->primary_image;   
+            $image = $request->primary_image;
             $imageName = $image->getClientOriginalName();
             $imagePath = $image->storeAs('primary', $imageName, 'public');
         }
@@ -77,7 +77,7 @@ class ProductController extends Controller
         $data->sub_category_id = $request->sub_category_id;
         $data->product_id = strtoupper('ghghjgjhhjh');
         $data->title = $request->title;
-        $data->gender = $request->gender;
+        $data->gender_id = $request->gender;
         $data->brand_name = $request->brand_name;
         $data->style_name = $request->style_name;
         $data->department = $request->department;
@@ -102,7 +102,7 @@ class ProductController extends Controller
         $data->primary_image = $imagePath;
         $data->save();
 
-        $sizes = $request->size;    
+        $sizes = $request->size;
         $colors = $request->colors;
         $quantities = $request->quantity;
 
@@ -129,7 +129,7 @@ class ProductController extends Controller
             $files = collect($files['file']);
 
             foreach ($files as $key => $file) {
-               
+
                 $fileName = $file->getClientOriginalName();
                 $filePath = $file->storeAs('uploads', $fileName, 'public');;
                 $fileModel = new ProductImages;
@@ -139,21 +139,21 @@ class ProductController extends Controller
                 $fileModel->save();
             }
 
-            
+
         }
         return redirect()->back()->with('success', 'Product Added Successfullly');
 
     }
 
     public function openProductList(Request $request)
-    {   
+    {
         $products = Product::get();
-        return view('seller.product.product-list', ['products' => $products]);
+        return view('seller.dashboard.product-list', ['products' => $products]);
     }
 
     public function openProductDetails(Request $request, Product $product)
-    {   
-    
-        return view('seller.product.product-details', ['product' => $product]);
+    {
+
+        return view('seller.dashboard.product-details', ['product' => $product]);
     }
 }

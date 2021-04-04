@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [App\Http\Controllers\Controller::class, 'index'])->name('index');
 
 Auth::routes();
 
@@ -40,6 +39,15 @@ Route::resource('category', 'App\Http\Controllers\CategoryController', ['only' =
 // Sub-Category
 Route::resource('sub-category', 'App\Http\Controllers\SubCategoryController', ['only' => [ 'index', 'store', 'update' ,'destroy' ]]);
 
-// Search 
+// Brand
+Route::resource('brand', 'App\Http\Controllers\BrandController', ['only' => [ 'index', 'store', 'update' ,'destroy']]);
+
+// Color
+Route::resource('color', 'App\Http\Controllers\ColorsController', ['only' => [ 'index', 'store', 'update' ,'destroy']]);
+
+// Size
+Route::resource('size', 'App\Http\Controllers\SizeController', ['only' => [ 'index', 'store', 'update' ,'destroy']]);
+
+// Search
 Route::get('/search', [App\Http\Controllers\SearchController::class, 'search'])->name('search');
 Route::get('/search-price', [App\Http\Controllers\SearchController::class, 'searchByPrice'])->name('search.price');

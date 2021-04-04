@@ -1,7 +1,7 @@
 @extends('seller.layout.app')
 
 @section('content')
-	
+
 	            <!-- Container-fluid starts-->
             <div class="container-fluid">
                 <div class="page-header">
@@ -32,7 +32,7 @@
                         <div class="col-xl-4">
                             <div class="product-slider owl-carousel owl-theme" id="sync1">
                             	{{-- @foreach($product->images as $key => $image) --}}
-                                <div class="item"><img src="{{ asset('storage/'.$product->image->file_path) }}" alt="" class="blur-up lazyloaded"  style="height: 14rem; width: 20rem;"></div>
+                                <div class="item"><img src="{{ url('../storage/app/public/'.$product->primary_image) }}" alt="" class="blur-up lazyloaded"  style="height: 14rem; width: 20rem;"></div>
                                 {{-- @endforeach --}}
                             </div>
                             {{-- <div class="owl-carousel owl-theme" id="sync2">

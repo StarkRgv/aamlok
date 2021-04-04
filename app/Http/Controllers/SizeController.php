@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Gender;
+use App\Models\Size;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
-class CategoryController extends Controller
+class SizeController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -26,9 +24,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::get();
-        $genders = Gender::get();
-        return view('seller.dashboard.add-category', ['categories' => $categories, 'genders' => $genders ]);
+        $sizes = Size::get();
+        return view('seller.dashboard.add-size', ['sizes' => $sizes]);
     }
 
     /**
@@ -38,7 +35,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -50,25 +47,23 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'category' => 'required|max:255',
-            'gender' => 'required',
+            'size' => 'required|max:255',
             ]);
 
-            $data = new Category;
-            $data->category = $request->category;
-            $data->gender_id = $request->gender;
+            $data = new Size;
+            $data->size = $request->size;
             $data->save();
 
-            return redirect()->back()->with('success', 'Category Added Successfullly');
+            return redirect()->back()->with('success', 'Size Added Successfullly');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Size  $size
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Size $size)
     {
         //
     }
@@ -76,10 +71,10 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Size  $size
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Size $size)
     {
         //
     }
@@ -88,35 +83,32 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Size  $size
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Size $size)
     {
-
         $validatedData = $request->validate([
-            'category' => 'required|max:255',
-            'gender' => 'required',
+            'size' => 'required|max:255',
             ]);
 
-        $data = Category::findOrFail($category->id);
+        $data = Size::findOrFail($size->id);
 
-        $data->category = $request->category;
-        $data->gender_id = $request->gender;
+        $data->size = $request->size;
         $data->save();
 
-        return redirect()->back()->with('success', 'Category Updated Successfullly');
+        return redirect()->back()->with('success', 'Size Updated Successfullly');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Size  $size
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Size $size)
     {
-        $category->delete();
-        return redirect()->back()->with('success', 'Category Deleted Successfullly');
+        $size->delete();
+        return redirect()->back()->with('success', 'Size Deleted Successfullly');
     }
 }
