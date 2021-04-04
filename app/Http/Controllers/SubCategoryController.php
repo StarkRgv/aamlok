@@ -19,7 +19,7 @@ class SubCategoryController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +30,7 @@ class SubCategoryController extends Controller
         $categories = Category::get();
     	$subCategories = SubCategory::get();
         $genders = Gender::get();
-        return view('seller.product.add-subCategory', ['subCategories' => $subCategories, 'categories' => $categories, 'genders' => $genders]);
+        return view('seller.dashboard.add-subCategory', ['subCategories' => $subCategories, 'categories' => $categories, 'genders' => $genders]);
     }
 
     /**
@@ -55,13 +55,13 @@ class SubCategoryController extends Controller
             'sub_category' => 'required|max:255',
             'gender' => 'required',
             ]);
-    
+
             $data = new SubCategory;
             $data->sub_category = $request->sub_category;
             $data->category_id = $request->category_id;
             $data->gender_id = $request->gender;
             $data->save();
-    
+
             return redirect()->back()->with('success', 'Sub-Category Added Successfullly');
     }
 
@@ -100,7 +100,7 @@ class SubCategoryController extends Controller
             'sub_category' => 'required|max:255',
             'gender' => 'required',
             ]);
-    
+
             $data = SubCategory::findOrFail($subCategory->id);
 
             $data->sub_category = $request->sub_category;

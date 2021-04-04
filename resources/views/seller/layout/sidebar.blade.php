@@ -10,38 +10,23 @@
                 </div>
                 <ul class="sidebar-menu">
                     <li><a class="sidebar-header" href="{{ route('home') }}"><i data-feather="home"></i><span>Dashboard</span></a></li>
-                    <li><a class="sidebar-header" href="{{ route('category.index') }}"><i data-feather="home"></i><span>Category</span></a></li>
-                    <li><a class="sidebar-header" href="{{ route('sub-category.index') }}"><i data-feather="home"></i><span>Sub Category</span></a></li>
-                    <li><a class="sidebar-header" href="{{ route('product.list') }}"><i data-feather="home"></i><span>Product List</span></a></li>
-                    <li><a class="sidebar-header" href="{{ route('product') }}"><i data-feather="home"></i><span>Add Product</span></a></li>
-                    {{-- <li><a class="sidebar-header" href="#"><i data-feather="box"></i> <span>Products</span><i class="fa fa-angle-right pull-right"></i></a>
+                    <li><a class="sidebar-header" href="#"><i data-feather="box"></i> <span>Filters</span></a>
                         <ul class="sidebar-submenu">
-                            <li>
-                                <a href="#"><i class="fa fa-circle"></i>
-                                    <span>Physical</span> <i class="fa fa-angle-right pull-right"></i>
-                                </a>
-                                <ul class="sidebar-submenu">
-                                    <li><a href="{{ route('category.index') }}"><i class="fa fa-circle"></i>Category</a></li>
-                                    <li><a href="{{ route('sub-category.index') }}"><i class="fa fa-circle"></i>Sub Category</a></li>
-                                    <li><a href="{{ route('product.list') }}"><i class="fa fa-circle"></i>Product List</a></li>
-                                    <li><a href="product-detail.html"><i class="fa fa-circle"></i>Product Detail</a></li>
-                                    <li><a href="{{ route('product') }}"><i class="fa fa-circle"></i>Add Product</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-circle"></i>
-                                    <span>Digital</span> <i class="fa fa-angle-right pull-right"></i>
-                                </a>
-                                <ul class="sidebar-submenu">
-                                    <li><a href="category-digital.html"><i class="fa fa-circle"></i>Category</a></li>
-                                    <li><a href="category-digitalsub.html"><i class="fa fa-circle"></i>Sub Category</a></li>
-                                    <li><a href="product-listdigital.html"><i class="fa fa-circle"></i>Product List</a></li>
-                                    <li><a href="add-digital-product.html"><i class="fa fa-circle"></i>Add Product</a></li>
-                                </ul>
-                            </li>
+                            <li><a class="sidebar-header" href="{{ route('category.index') }}"><i data-feather="home"></i><span>Category</span></a></li>
+                            <li><a class="sidebar-header" href="{{ route('sub-category.index') }}"><i data-feather="home"></i><span>Sub Category</span></a></li>
+                            <li><a class="sidebar-header" href="{{ route('brand.index') }}"><i data-feather="home"></i><span>Brand</span></a></li>
+                            <li><a class="sidebar-header" href="{{ route('color.index') }}"><i data-feather="home"></i><span>Color</span></a></li>
+                            <li><a class="sidebar-header" href="{{ route('size.index') }}"><i data-feather="home"></i><span>Size</span></a></li>
                         </ul>
                     </li>
-                    <li><a class="sidebar-header" href="#"><i data-feather="dollar-sign"></i><span>Sales</span><i class="fa fa-angle-right pull-right"></i></a>
+                    <li><a class="sidebar-header" href="#"><i data-feather="box"></i> <span>Products</span></a>
+                        <ul class="sidebar-submenu">
+                            <li><a class="sidebar-header" href="{{ route('product.list') }}"><i data-feather="home"></i><span>Product List</span></a></li>
+                            <li><a class="sidebar-header" href="{{ route('product') }}"><i data-feather="home"></i><span>Add Product</span></a></li>
+                            <li><a class="sidebar-header" href="#"><i data-feather="box"></i> <span>Products</span><i class="fa fa-angle-right pull-right"></i></a>
+                        </ul>
+                    </li>
+                    {{-- <li><a class="sidebar-header" href="#"><i data-feather="dollar-sign"></i><span>Sales</span><i class="fa fa-angle-right pull-right"></i></a>
                         <ul class="sidebar-submenu">
                             <li><a href="order.html"><i class="fa fa-circle"></i>Orders</a></li>
                             <li><a href="transactions.html"><i class="fa fa-circle"></i>Transactions</a></li>

@@ -27,7 +27,7 @@ class HomeController extends Controller
     // }
 
     public function logout () {
-    auth()->logout();
-    return redirect('/');
+        auth()->logout();
+        return redirect('/');
     }
 }

@@ -33,7 +33,7 @@
                             <div class="card-body product-box">
                                 <div class="img-wrapper">
                                     <div class="front">
-                                        <a href="#"><img src="{{ asset('storage/'.$product->image->file_path) }}" class="img-fluid blur-up lazyload bg-img" alt=""></a>
+                                        <a href="#"><img src="{{ url('../storage/app/public/'.$product->primary_image) }}" class="img-fluid blur-up lazyload bg-img" alt=""></a>
                                         <div class="product-hover">
                                             <ul>
                                                 <li>
@@ -64,7 +64,7 @@
                     @empty
                     <h1>No data Available.</h1>
                     @endforelse
-                               
+
                             </div>
                         </div>
                     </div>
