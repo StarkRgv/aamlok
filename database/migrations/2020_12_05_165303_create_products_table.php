@@ -33,7 +33,6 @@ class CreateProductsTable extends Migration
             $table->string('mrp')->nullable();
             $table->string('selling_price')->nullable();
             $table->mediumInteger('order_quantity')->nullable();
-            $table->mediumInteger('in_stock')->nullable();
             $table->mediumInteger('unit_count')->nullable();
             $table->text('care_instructions')->nullable();
             $table->text('occasion_instructions')->nullable();
@@ -42,6 +41,7 @@ class CreateProductsTable extends Migration
             $table->text('product_desc')->nullable();
             $table->text('key_feature')->nullable();
             $table->text('primary_image')->nullable();
+            $table->bigInteger('status')->default(0);
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('sub_category_id')->references('id')->on('sub_categories');

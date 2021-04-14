@@ -21,12 +21,13 @@ class CreateProductVariationsTable extends Migration
             $table->string('size')->nullable();
             $table->string('color')->nullable();
             $table->bigInteger('quantity')->nullable();
+            $table->bigInteger('status')->default(1);
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('sub_category_id')->references('id')->on('sub_categories');
             $table->foreign('product_id')->references('id')->on('products');
-            
+
         });
     }
 

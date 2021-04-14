@@ -142,7 +142,7 @@
                                             <label for="category_id">Select Gander :</label>
                                             <select class="form-control @error('gender') is-invalid @enderror" id="category_id" name="gender">
                                                 @foreach($genders as $gender)
-                                                <option value="{{ $gender->id }}">{{ $gender->name }}</option>
+                                                <option {{ $category->gender_id === $gender->id? 'selected' : '' }} value="{{ $gender->id }}">{{ $gender->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('gender')
