@@ -68,7 +68,7 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                 <label for="category_id">Select Gander :</label>
                                                 <select class="form-control @error('gender') is-invalid @enderror" id="category_id" name="gender">
@@ -80,7 +80,7 @@
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
                                                 </div>
-                                            
+
                                                 {{-- <div class="form-group mb-0">
                                                     <label for="validationCustom02" class="mb-1">Category Image :</label>
                                                     <input class="form-control" id="validationCustom02" type="file">
@@ -154,16 +154,16 @@
                                                     <label for="validationCustom01" class="mb-1">Category :</label>
                                                     <select name="category_id" class="form-control">
                                                         @foreach($categories as $category)
-                                                        <option value="{{ $category->id }}">{{ $category->category }}</option>
+                                                        <option {{ $subcategory->category_id === $category->id? 'selected' : '' }} value="{{ $category->id }}">{{ $category->category }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                 <label for="category_id">Select Gander :</label>
                                                 <select class="form-control @error('gender') is-invalid @enderror" id="category_id" name="gender">
                                                     @foreach($genders as $gender)
-                                                    <option value="{{ $gender->id }}">{{ $gender->name }}</option>
+                                                    <option {{ $subcategory ->gender_id === $gender->id? 'selected' : '' }} value="{{ $gender->id }}">{{ $gender->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('gender')

@@ -21,7 +21,8 @@
                     </li>
                     <li><a class="sidebar-header" href="#"><i data-feather="box"></i> <span>Products</span></a>
                         <ul class="sidebar-submenu">
-                            <li><a class="sidebar-header" href="{{ route('product.list') }}"><i data-feather="home"></i><span>Product List</span></a></li>
+                            <li><a class="sidebar-header" href="{{ route('active.product') }}"><i data-feather="home"></i><span>Active Products</span></a></li>
+                            <li><a class="sidebar-header" href="{{ route('retired.product') }}"><i data-feather="home"></i><span>Retired Products</span></a></li>
                             <li><a class="sidebar-header" href="{{ route('product') }}"><i data-feather="home"></i><span>Add Product</span></a></li>
                             <li><a class="sidebar-header" href="#"><i data-feather="box"></i> <span>Products</span><i class="fa fa-angle-right pull-right"></i></a>
                         </ul>

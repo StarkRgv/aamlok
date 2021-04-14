@@ -34,29 +34,27 @@
                                 <div class="img-wrapper">
                                     <div class="front">
                                         <a href="#"><img src="{{ url('../storage/app/public/'.$product->primary_image) }}" class="img-fluid blur-up lazyload bg-img" alt=""></a>
-                                        <div class="product-hover">
-                                            <ul>
-                                                <li>
-                                                    <button class="btn" type="button" data-original-title="" title=""><i class="ti-pencil-alt"></i></button>
-                                                </li>
-                                                <li>
-                                                    <button class="btn" type="button" data-toggle="modal" data-target="#exampleModalCenter" data-original-title="" title=""><i class="ti-trash"></i></button>
-                                                </li>
-                                            </ul>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="product-detail">
-                                    <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
+                                </br>
                                     <a href="{{ route('product.detail', ['product' =>$product]) }}">
                                         <h6>{{ $product->title }}</h6>
                                     </a>
-                                    <h4>Rs.{{ $product->selling_price }}<del>/Rs.{{ $product->mrp }}</del></h4>
-                                    <ul class="color-variant">
-                                        <li class="bg-light0"></li>
-                                        <li class="bg-light1"></li>
-                                        <li class="bg-light2"></li>
-                                    </ul>
+                                    <h4>Rs.{{ $product->selling_price }}  <del>  {{ $product->mrp }}</del></h4>
+                                </br>
+                                <h6 class="">Status :
+                                    @if ($product->status == 0)
+                                    <span class="text-danger">Retired</span>
+                                    @else
+                                    Active
+                                    @endif
+                                </h6>
+                                <p><a href="{{ route('edit.product', ['product' => $product]) }}" class="btn btn-secondary">Edit</a></p>
+                                    <form action="{{ route('status.product', ['status' => $product->status, 'product' => $product]) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn {{ $product->status == 1 ? 'btn-primary' : 'btn-danger' }}">{{ $product->status == 0 ? 'Activate' : 'Retire' }}</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
