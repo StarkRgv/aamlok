@@ -38,7 +38,8 @@
 <div class="card">
 <div class="card-header">
 <h5>Edit Product</h5>
-<a href="{{ route('product.variation', ['product' => $product->id ]) }}" class="pull-right btn btn-primary">Variation <i class="fa fa-pencil" aria-hidden="true"></i></a>
+<a href="{{ route('product.variation', ['product' => $product->id ]) }}" class="pull-right btn btn-primary ml-3">Variation <i class="fa fa-pencil" aria-hidden="true"></i></a>
+<a href="{{ route('product.image', ['product' => $product->id ]) }}" class="pull-right btn btn-primary">Images <i class="fa fa-pencil" aria-hidden="true"></i></a>
 </div>
 <div class="card-body">
 <div class="row product-adding">

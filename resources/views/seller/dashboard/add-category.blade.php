@@ -100,7 +100,7 @@
                         <tbody>
                         @foreach($categories as $key => $category)
                         <tr>
-                            <th scope="row">{{ $key }}</th>
+                            <th scope="row">{{ $key + 1 }}</th>
                             <td>{{ $category->category }}</td>
                             <td>{{ $category->genders->name }}</td>
                             <td>

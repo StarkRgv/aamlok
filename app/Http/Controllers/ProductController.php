@@ -79,7 +79,7 @@ class ProductController extends Controller
             if($request->file()) {
                 $image = $request->primary_image;
                 $imageName = $image->getClientOriginalName();
-                $imagePath = $image->storeAs('primary', $imageName, 'public');
+                $imagePath = $image->storeAs('uploads/primary', $imageName, 'public');
             }
 
             $data = new Product;
@@ -111,20 +111,7 @@ class ProductController extends Controller
             $data->primary_image = $imagePath;
             $data->save();
 
-            // if($request->file()) {
-            //     $files = $request->file();
-            //     $files = collect($files['file']);
 
-            //     foreach ($files as $key => $file) {
-
-            //         $fileName = $file->getClientOriginalName();
-            //         $filePath = $file->storeAs('uploads', $fileName, 'public');;
-            //         $fileModel = new ProductImages;
-            //         $fileModel->product_id = $data->id;
-            //         $fileModel->name = $fileName;
-            //         $fileModel->file_path = $filePath;
-            //         $fileModel->save();
-            //     }
 
             return redirect()->route('product.variation', ['product' => $data->id ]);
         // }
@@ -235,73 +222,4 @@ class ProductController extends Controller
         return view('seller.dashboard.product-details', ['product' => $product]);
     }
 
-    public function openProductVariation(Request $request, Product $product)
-    {
-        $colors = Colors::get();
-        $size = Size::get();
-        $variations = ProductVariation::where('product_id', $product->id)->get();
-        return view('seller.dashboard.add-product-variation', ['product' => $product,
-                                                                'colors' => $colors,
-                                                                'size' => $size,
-                                                                'variations' => $variations]
-                                                            );
-    }
-
-    public function addVariaton(Request $request)
-    {
-        $product_id = $request->product;
-        $product = Product::find($product_id);
-        $colors = $request->colors;
-        $size = $request->size;
-        foreach($colors as $color){
-            foreach($size as $item){
-                $dataCount = ProductVariation::where('color', $color)->where('size', $item)->count();
-                if ($dataCount == 0) {
-                    $data = new ProductVariation;
-                    $data->category_id = $product->category_id;
-                    $data->sub_category_id = $product->sub_category_id;
-                    $data->product_id = $product->id;
-                    $data->size = $item;
-                    $data->color = $color;
-                    $data->save();
-                }
-            }
-        }
-        return redirect()->back();
-    }
-
-    public function updateVariaton(Request $request, ProductVariation $variation)
-    {
-        $validatedData = $request->validate([
-            'quantity' => 'required',
-            ]);
-
-        $data = ProductVariation::findOrFail($variation->id);
-
-        $data->quantity = $request->quantity;
-        $data->save();
-
-        return redirect()->back()->with('success', 'Quantity Updated Successfullly');
-    }
-
-    public function destroyVariation(ProductVariation $variation)
-    {
-        $variation->delete();
-        return redirect()->back()->with('success', 'Variation Deleted Successfullly');
-    }
-
-    public function statusVariation(Request $request, ProductVariation $variation)
-    {
-        $data = ProductVariation::findOrFail($variation->id);
-
-        if ($request->status == 1) {
-            $data->status = 0;
-            $data->save();
-        }else{
-            $data->status = 1;
-            $data->save();
-        }
-
-        return redirect()->back()->with('success', 'Status Updated');
-    }
 }

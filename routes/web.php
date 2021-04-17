@@ -14,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Auth::routes();
+
 Route::get('/', [App\Http\Controllers\Controller::class, 'index'])->name('index');
 
-// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
 Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
@@ -36,14 +37,21 @@ Route::get('/active-product', [App\Http\Controllers\ProductController::class, 'o
 Route::get('/retired-product', [App\Http\Controllers\ProductController::class, 'openRetiredProductList'])->name('retired.product');
 Route::get('/product-details/{product?}', [App\Http\Controllers\ProductController::class, 'openProductDetails'])->name('product.detail');
 Route::post('/product/status/{product?}', [App\Http\Controllers\ProductController::class, 'statusProduct'])->name('status.product');
-// Product-Variation
-Route::get('/product-variation/{product?}', [App\Http\Controllers\ProductController::class, 'openProductVariation'])->name('product.variation');
-Route::post('/store/variation', [App\Http\Controllers\ProductController::class, 'addVariaton'])->name('store.variation');
-Route::post('/update/variation/{variation?}', [App\Http\Controllers\ProductController::class, 'updateVariaton'])->name('update.variation');
-Route::post('/destroy/variation/{variation?}', [App\Http\Controllers\ProductController::class, 'destroyVariation'])->name('destroy.variation');
-Route::post('/variation/status/{variation?}', [App\Http\Controllers\ProductController::class, 'statusVariation'])->name('status.variation');
 
-// Category
+// Product-Variation
+Route::get('/product-variation/{product?}', [App\Http\Controllers\ProductVariationController::class, 'openProductVariation'])->name('product.variation');
+Route::post('/store/variation', [App\Http\Controllers\ProductVariationController::class, 'addVariaton'])->name('store.variation');
+Route::post('/update/variation/{variation?}', [App\Http\Controllers\ProductVariationController::class, 'updateVariaton'])->name('update.variation');
+Route::post('/destroy/variation/{variation?}', [App\Http\Controllers\ProductVariationController::class, 'destroyVariation'])->name('destroy.variation');
+Route::post('/variation/status/{variation?}', [App\Http\Controllers\ProductVariationController::class, 'statusVariation'])->name('status.variation');
+
+// Product-Images
+Route::get('/product-images/{product?}', [App\Http\Controllers\ProductImageController::class, 'openProductImage'])->name('product.image');
+Route::post('/store/images/{product?}', [App\Http\Controllers\ProductImageController::class, 'storeImages'])->name('store.images');
+Route::post('/destroy/image/{image?}', [App\Http\Controllers\ProductImageController::class, 'destroyImage'])->name('destroy.image');
+Route::post('/store/variation/images/{product?}', [App\Http\Controllers\ProductImageController::class, 'storeVariationImages'])->name('store.variaion.images');
+
+// CategoryProductVariationController
 Route::resource('category', 'App\Http\Controllers\CategoryController', ['only' => [ 'index', 'store', 'update' ,'destroy']]);
 
 // Sub-Category
