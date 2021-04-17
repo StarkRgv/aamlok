@@ -38,6 +38,8 @@
             <div class="card">
                 <div class="card-header">
                     <h5>Add Product Variation</h5>
+                    <a href="{{ route('product.image', ['product' => $product->id ]) }}" class="pull-right btn btn-primary ml-3">Images <i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a href="{{ route('edit.product', ['product' => $product]) }}" class="pull-right btn btn-primary">Product <i class="fa fa-pencil" aria-hidden="true"></i></a>
                 </div>
                 <div class="card-body">
                     <form class="needs-validation" action="{{ route('store.variation', ['product' => $product]) }}" method="POST">

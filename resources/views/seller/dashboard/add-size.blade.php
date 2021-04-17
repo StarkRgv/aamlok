@@ -86,7 +86,7 @@
                         <tbody>
                         @foreach($sizes as $key => $size)
                         <tr>
-                            <th scope="row">{{ $key }}</th>
+                            <th scope="row">{{ $key + 1 }}</th>
                             <td>{{ $size->size }}</td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test" data-target="#editModal_{{ $size->id }}">

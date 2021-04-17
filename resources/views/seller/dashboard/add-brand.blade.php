@@ -86,7 +86,7 @@
                         <tbody>
                         @foreach($brands as $key => $brand)
                         <tr>
-                            <th scope="row">{{ $key }}</th>
+                            <th scope="row">{{ $key + 1 }}</th>
                             <td>{{ $brand->brand }}</td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test" data-target="#editModal_{{ $brand->id }}">

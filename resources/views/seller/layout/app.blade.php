@@ -23,6 +23,9 @@
     <!-- Flag icon-->
     <link rel="stylesheet" type="text/css" href="{{ asset('seller/css/flag-icon.css') }}">
 
+    <!-- Dropzone css-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('seller/css/dropzone.css') }}">
+
     <!-- jsgrid css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('seller/css/jsgrid.css') }}">
 
@@ -71,6 +74,16 @@
 <!-- Sidebar jquery-->
 <script src="{{ asset('seller/js/sidebar-menu.js') }}"></script>
 
+<!--dropzone js-->
+<script src="{{  asset('seller/js/dropzone/dropzone.js') }}"></script>
+<script src="{{  asset('seller/js/dropzone/dropzone-script.js') }}"></script>
+
+<!--ckeditor js-->
+<script src="{{  asset('seller/js/editor/ckeditor/ckeditor.js') }}"></script>
+<script src="{{  asset('seller/js/editor/ckeditor/styles.js') }}"></script>
+<script src="{{  asset('seller/js/editor/ckeditor/adapters/jquery.js') }}"></script>
+<script src="{{  asset('seller/js/editor/ckeditor/ckeditor.custom.js') }}"></script>
+
 <!-- touchspin js-->
 {{-- <script src="{{ asset('seller/js/touchspin/vendors.min.js') }}"></script> --}}
 <script src="{{ asset('seller/js/touchspin/touchspin.js') }}"></script>
@@ -102,6 +115,9 @@
 <!-- Zoom js-->
 <script src="{{ asset('seller/js/jquery.elevatezoom.js') }}"></script>
 <script src="{{ asset('seller/js/zoom-scripts.js') }}"></script>
+
+<!-- lazyload js-->
+<script src="{{ asset('seller/js/lazysizes.min.js') }}"></script>
 
 </body>
 </html>
