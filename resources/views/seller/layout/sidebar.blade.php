@@ -12,11 +12,12 @@
                     <li><a class="sidebar-header" href="{{ route('home') }}"><i data-feather="home"></i><span>Dashboard</span></a></li>
                     <li><a class="sidebar-header" href="#"><i data-feather="box"></i> <span>Filters</span></a>
                         <ul class="sidebar-submenu">
-                            <li><a class="sidebar-header" href="{{ route('category.index') }}"><i data-feather="home"></i><span>Category</span></a></li>
-                            <li><a class="sidebar-header" href="{{ route('sub-category.index') }}"><i data-feather="home"></i><span>Sub Category</span></a></li>
+                            <li><a class="sidebar-header" href="{{ route('gender.index') }}"><i data-feather="home"></i><span>Gender</span></a></li>
                             <li><a class="sidebar-header" href="{{ route('brand.index') }}"><i data-feather="home"></i><span>Brand</span></a></li>
                             <li><a class="sidebar-header" href="{{ route('color.index') }}"><i data-feather="home"></i><span>Color</span></a></li>
                             <li><a class="sidebar-header" href="{{ route('size.index') }}"><i data-feather="home"></i><span>Size</span></a></li>
+                            <li><a class="sidebar-header" href="{{ route('category.index') }}"><i data-feather="home"></i><span>Category</span></a></li>
+                            <li><a class="sidebar-header" href="{{ route('sub-category.index') }}"><i data-feather="home"></i><span>Sub Category</span></a></li>
                         </ul>
                     </li>
                     <li><a class="sidebar-header" href="#"><i data-feather="box"></i> <span>Products</span></a>

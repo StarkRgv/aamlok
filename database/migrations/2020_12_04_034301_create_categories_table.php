@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('category')->nullable();
             $table->unsignedBigInteger('gender_id');
             $table->timestamps();
+
             $table->foreign('gender_id')->references('id')->on('genders');
 
         });

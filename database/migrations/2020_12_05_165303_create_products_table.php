@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('gender_id');
             $table->string('product_id');
             $table->string('title')->nullable();
-            $table->string('brand_name')->nullable();
+            $table->unsignedBigInteger('brand_name')->nullable();
             $table->string('style_name')->nullable();
             $table->string('fitting_type')->nullable();
             $table->string('pattern')->nullable();
@@ -46,6 +46,7 @@ class CreateProductsTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('sub_category_id')->references('id')->on('sub_categories');
             $table->foreign('gender_id')->references('id')->on('genders');
+            $table->foreign('brand_name')->references('id')->on('brands');
         });
     }
 

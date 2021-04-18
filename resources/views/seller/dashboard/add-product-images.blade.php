@@ -46,7 +46,7 @@
                         @csrf
                         <div class="input-group mb-3 row">
                             <div class="col-xl-8 col-sm-7 pl-3  custom-file">
-                            <input type="file" class="form-control @error('file') is-invalid @enderror" id="" name="file[]" multiple="multiple" accept="image/jpg, image/jpeg" >
+                            <input type="file" class="form-control @error('file') is-invalid @enderror" id="" name="file[]" multiple="multiple" accept="image/jpg, image/jpeg, image/png" >
                             </div>
                         </div>
                             @error('file')

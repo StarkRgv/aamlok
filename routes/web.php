@@ -57,6 +57,9 @@ Route::resource('category', 'App\Http\Controllers\CategoryController', ['only' =
 // Sub-Category
 Route::resource('sub-category', 'App\Http\Controllers\SubCategoryController', ['only' => [ 'index', 'store', 'update' ,'destroy' ]]);
 
+// Gender
+Route::resource('gender', 'App\Http\Controllers\GenderController', ['only' => [ 'index', 'store', 'update' ,'destroy' ]]);
+
 // Brand
 Route::resource('brand', 'App\Http\Controllers\BrandController', ['only' => [ 'index', 'store', 'update' ,'destroy']]);
 
