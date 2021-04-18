@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-	<title>Grid</title>
+	<title>AAMLOK | LISTING</title>
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,100,700' rel='stylesheet' type='text/css'/>
 	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'/>
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.1.0/css/font-awesome.css"/>
@@ -25,7 +25,7 @@
 			<div class="row">
 				<div class="col-sm-4 col-xs-12">
 					<div class="logo">
-						<a href="index.html"><img src="images/home_1/logo.png" alt="" /></a>
+						<a href="{{ url('/') }}"><img src="images/home_1/logo.png" alt="" /></a>
 					</div>
 				</div>
 				<div class="col-sm-8 col-xs-12">
@@ -273,9 +273,11 @@
 									<dt class="first">Category</dt>
 									<dd class="cust-scroll">
 										<ol>
-											@foreach ($categories as $cat)
+											@forelse ($categories as $cat)
 											<li><a href="{{ route('listing', ['category_id' => $cat->id]) }}">{{ $cat->category }}</a></li>
-											@endforeach
+											@empty
+                                            <li><h4>No Data Found</h4>
+                                            @endforelse
 										</ol>
 									</dd>
 									<dt>Price</dt>
@@ -297,7 +299,7 @@
                                                         <div class="price-to">
                                                             <input type="text" name="max" id="maxPrice" class="priceTextBox pr" value="">
                                                         </div>
-                                                    <button class="go" type="submit">Go</button>
+                                                        <button class="go" type="submit">Go</button>
                                                 </div>
                                             </form>
 										</div>
@@ -305,25 +307,31 @@
 									<dt>Color</dt>
 									<dd class="cust-scroll">
 										<ol>
-											@foreach ($colors as $color)
+											@forelse ($colors as $color)
 											<li><a href="{{ route('listing', ['color_id' => $color->id]) }}">{{ $color->color }}</a></li>
-											@endforeach
+											@empty
+                                            <li><h4>No Data Found</h4></li>
+                                            @endforelse
 										</ol>
 									</dd>
 									<dt>Size</dt>
 									<dd class="cust-scroll">
 										<ol>
-											@foreach ($sizes as $size)
+											@forelse ($sizes as $size)
 											<li><a href="{{ route('listing', ['size_id' => $size->id]) }}">{{ $size->size }}</a></li>
-											@endforeach
+											@empty
+                                            <li><h4>No Data Found</h4></li>
+                                            @endforelse
 										</ol>
 									</dd>
 									<dt>Brand</dt>
 									<dd class="cust-scroll">
 										<ol>
-											@foreach ($brands as $brand)
+											@forelse ($brands as $brand)
 											<li><a href="{{ route('listing', ['brand_id' => $brand->id]) }}">{{ $brand->brand }}</a></li>
-											@endforeach
+											@empty
+                                            <li><h4>No Data Found</h4></li>
+                                            @endforelse
 										</ol>
 									</dd>
 								</dl>
@@ -564,7 +572,7 @@
 												<div class="wrap-ns-price">
 													<div class="price-box">
 														<p class="special-price">
-															<span class="price">{{ $product->selling_price }}</span>
+															<span class="price">₹ {{ $product->selling_price }} - </span>
 														</p>
 														<p class="old-price">
 															<span class="price">$200</span>

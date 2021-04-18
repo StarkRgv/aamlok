@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<title>Home 3</title>
+	<title>AAMLOK | HOME</title>
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,100,700' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
@@ -26,7 +26,7 @@
 					<div class="row">
 						<div class="col-md-3 col-sm-12 col-xs-12">
 							<div class="logo">
-								<a href="index.html"><img src="images/home_3/logo.png" alt="" /></a>
+								<a href="{{ url('/') }}"><img src="images/home_3/logo.png" alt="" /></a>
 							</div>
 						</div>
 						<div class="col-md-9 col-sm-12 col-xs-12">
@@ -249,6 +249,7 @@
 											</li>
 											<li><a href="#">BLOG LIST</a></li>
 											<li class="menu-item-has-children"><a href="#"> SHOP <sup class="sale-label">sale</sup></a></li> --}}
+                                            <li><a href="{{ route('listing') }}">Listing</a></li>
                                             @guest
                                                 <li><a href="{{ route('login') }}">LOGIN </a></li>
                                             @endauth

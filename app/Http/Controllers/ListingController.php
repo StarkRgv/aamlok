@@ -16,7 +16,7 @@ class ListingController extends Controller
     public function openListing(Request $request){
 
         $categories = Category::get();
-    	$products = Product::get();
+    	$products = Product::where('status', 1)->get();
     	$genders = Gender::get();
     	$brands = Brand::get();
     	$colors = Colors::get();
@@ -24,7 +24,7 @@ class ListingController extends Controller
 
             if ($request->has('category_id')) {
                 $id = $request->category_id;
-                $products = Product::where('category_id', $id)->get();
+                $products = Product::where('category_id', $id)->where('status', 1)->get();
                 return view('listing', ['categories' => $categories,
                                         'products' => $products,
                                         'genders' => $genders,
@@ -35,7 +35,18 @@ class ListingController extends Controller
             }
             if ($request->has('sub_category_id')) {
                 $id = $request->sub_category_id;
-                $products = Product::where('sub_category_id', $id)->get();
+                $products = Product::where('sub_category_id', $id)->where('status', 1)->get();
+                return view('listing', ['categories' => $categories,
+                                        'products' => $products,
+                                        'genders' => $genders,
+                                        'brands' => $brands,
+                                        'colors' => $colors,
+                                        'sizes' => $sizes
+                                        ]);
+            }
+            if ($request->has('brand_id')) {
+                $id = $request->brand_id;
+                $brands = Product::where('brand_name', $id)->where('status', 1)->get();
                 return view('listing', ['categories' => $categories,
                                         'products' => $products,
                                         'genders' => $genders,

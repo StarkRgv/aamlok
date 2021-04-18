@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
 <head>
-    
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -274,26 +274,26 @@
 														<img width="380" height="570" title="Plaid Cotton Shirt-Khaki-M" alt="" src="{{ url('../storage/app/public/'.$product->image->file_path) }}" class="gallery-image visible" id="image-main">
 													</div>
 												</div>
-												<!--product-image-zoom-->	
+												<!--product-image-zoom-->
 												<div class="popup-btn  hidden-phone">
 													<a href="#" data-fancybox-group="button" class="fancybox-buttons" id="popup-image">
 													Click to popup images		</a>
 													<a href="#" data-fancybox-group="button" class="fancybox-buttons">
 													</a>
 													<a href="#" data-fancybox-group="button" class="fancybox-buttons">
-													</a>     
+													</a>
 													<a href="#" data-fancybox-group="button" class="fancybox-buttons">
-													</a>     
+													</a>
 													<a href="#" data-fancybox-group="button" class="fancybox-buttons">
-													</a>     
+													</a>
 													<a href="#" data-fancybox-group="button" class="fancybox-buttons">
 													</a>
 												</div>
-												<!--popup-btn-->						
+												<!--popup-btn-->
 											</div>
 											<div class="more-views">
 												<div class="navslider">
-													<a class="prev">prev</a> 
+													<a class="prev">prev</a>
 													<a class="next">next</a>
 												</div>
 												<div class="inner">
@@ -381,7 +381,7 @@
 													</div>
 												</div>
 											</div>
-											<!--more-views--> 
+											<!--more-views-->
 										</div>
 									</div>
 									<div class="product-shop col-lg-5 col-md-5 col-sm-12 col-xs-12">
@@ -410,22 +410,23 @@
 											<div class="availability in-stock box-style">
 												<ul>
 													<li class="first">Availability</li>
-													<li class="last">In stock ({{ $product->in_stock }})</li>
+													<li class="last">In stock ({{ $stockCount }})</li>
 												</ul>
 											</div>
 											<div class="short-description">
 												<div class="std">
-												{{ $product->product_desc }} 						
+												{{ $product->product_desc }}
 												</div>
 											</div>
 											<div class="wrap-ns-price">
 												<div class="price-box">
 													<span class="regular-price">
-													<span class="price">{{ $product->selling_price }}</span>                                    </span>
+													<span class="price">₹ {{ $product->selling_price }}</span>                                    </span>
 												</div>
-												<div class="wrap-new-sale">								
+												<div class="wrap-new-sale">
 												</div>
 											</div>
+
 											<div class="product-addto">
 												<div class="product-addto-inner">
 													<div id="product-options-wrapper" class="product-options">
@@ -442,7 +443,7 @@
 																			<li style="background: rgb(251, 93, 93) none repeat scroll 0% 0%;"><input type="radio" value="204" class="radio  product-custom-option"><span class="label"><label>Red_#fb5d5d <span class="price-notice">+<span class="price">$4.00</span></span></label></span></li>
 																			<li style="background: rgb(255, 224, 12) none repeat scroll 0% 0%;"><input type="radio" value="205" class="radio  product-custom-option"><span class="label"><label>Yellow_#ffe00c <span class="price-notice">+<span class="price">$5.00</span></span></label></span></li>
 																		</ul>
-																		<span class="group-color">					
+																		<span class="group-color">
 																		<input type="hidden" value="#4d6dbd" name="options_41_2" class="item_options">
 																		<input type="hidden" value="#72b226" name="options_41_3" class="item_options">
 																		<input type="hidden" value="#2fbcda" name="options_41_4" class="item_options">
@@ -458,11 +459,9 @@
 																	<div class="input-box">
 																		<ul class="options-list" id="options-42-list">
 																			<li><input type="radio" checked="checked" value="" name="options[42]" class="radio product-custom-option" id="options_42"><span class="label"><label for="options_42">None</label></span></li>
-																			<li class="item2"><input type="radio" value="206" class="radio  product-custom-option"><span class="label"><label>2XL <span class="price-notice">+<span class="price">$1.00</span></span></label></span></li>
-																			<li><input type="radio" value="207" class="radio  product-custom-option"><span class="label"><label>L <span class="price-notice">+<span class="price">$2.00</span></span></label></span></li>
-																			<li><input type="radio" value="209" class="radio  product-custom-option"><span class="label"><label>M <span class="price-notice">+<span class="price">$4.00</span></span></label></span></li>
-																			<li><input type="radio" value="208" class="radio  product-custom-option"><span class="label"><label>S <span class="price-notice">+<span class="price">$3.00</span></span></label></span></li>
-																			<li><input type="radio" value="210" class="radio  product-custom-option"><span class="label"><label>XL <span class="price-notice">+<span class="price">$5.00</span></span></label></span></li>
+                                                                            @foreach ($sizes as $key => $size)
+																			<li class="item2"><input type="radio" value="206" class="radio  product-custom-option"><span class="label"><label> {{ $size->sizes->size }} </label></span></li>
+                                                                            @endforeach
 																		</ul>
 																	</div>
 																</div>
@@ -477,7 +476,7 @@
 														<div class="add-to-cart">
 															<label for="qty">Qty:</label>
 															<div class="quantity-controls quantity-minus">minus</div>
-															<input type="text" class="input-text qty" title="Qty" value="1" maxlength="12" id="qty" name="qty">       
+															<input type="text" class="input-text qty" title="Qty" value="1" maxlength="12" id="qty" name="qty">
 															<div class="quantity-controls quantity-plus">plus</div>
 															<button onclick="productAddToCartForm.submit(this)" class="button btn-cart  " id="product-addtocart-button" title="Add to Cart" type="button"><span><span>Buy</span></span></button>
 														</div>
@@ -492,7 +491,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="block-buyer-protec col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									{{-- <div class="block-buyer-protec col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<div class="inner">
 											<a class="icart" href="#">cart</a>
 											<h2>Buyer Protection</h2>
@@ -506,7 +505,7 @@
 												</li>
 											</ul>
 										</div>
-									</div>
+									</div> --}}
 									<input type="hidden" name="flycart_add" value="1">
 								</form>
 								<div id="product-tabs">
@@ -546,10 +545,10 @@
 																</ul>
 															</div>
 															<div class="des-right col-lg-8 col-md-8 col-sm-8 col-xs-12">
-																<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+																<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 																	Lorem Ipsum has been the industry's standard dummy text ever since the
 																	1500s, when an unknown printer took a galley of type and scrambled it to make
-																	a type specimen book. It has survived not only five centuries, but also the leap 
+																	a type specimen book. It has survived not only five centuries, but also the leap
 																	into electronic typesetting, remaining essentially unchanged. It was popularised
 																</p>
 																<ul class="item-images">
@@ -628,21 +627,21 @@
 																	<label>Show</label>
 																	<select onchange="setLocation(this.value)">
 																		<option selected="selected" value="detail.html?limit=10">
-																			10            
+																			10
 																		</option>
 																		<option value="detail.html?limit=20">
-																			20            
+																			20
 																		</option>
 																		<option value="detail.html?limit=50">
-																			50            
+																			50
 																		</option>
 																	</select>
-																	per page    
+																	per page
 																</div>
 															</div>
 															<dl>
 																<dt>
-																	<a href="#">Nullam egestas, ante ut porta egestas.</a> Review by <span>7uptheme</span>            
+																	<a href="#">Nullam egestas, ante ut porta egestas.</a> Review by <span>7uptheme</span>
 																</dt>
 																<dd>
 																	<table class="ratings-table">
@@ -688,16 +687,16 @@
 																	<label>Show</label>
 																	<select onchange="setLocation(this.value)">
 																		<option selected="selected" value="detail.html?limit=10">
-																			10            
+																			10
 																		</option>
 																		<option value="detail.html?limit=20">
-																			20            
+																			20
 																		</option>
 																		<option value="detail.html?limit=50">
-																			50            
+																			50
 																		</option>
 																	</select>
-																	per page    
+																	per page
 																</div>
 															</div>
 															<div class="form-add">
@@ -826,8 +825,8 @@
 														<div class="item-image">
 															<div class="item-image-inner">
 																<a title="Elizabeth Knit Top-Pink-M" href="#" class="product-image">
-																<img alt="Elizabeth Knit Top-Pink-M" src="{{ asset('images/photo/11.png') }}" class="first_image"> 
-																</a>                               
+																<img alt="Elizabeth Knit Top-Pink-M" src="{{ asset('images/photo/11.png') }}" class="first_image">
+																</a>
 																<div class="item-btn">
 																	<div class="btn-wqc">
 																		<a class="link-wishlist" href="#" title="Add to wishlist"></a>
@@ -846,7 +845,7 @@
 															</div>
 															<div class="cate-name">
 																<a href="#">
-																Default Category									
+																Default Category
 																</a>
 															</div>
 															<div class="rating">
@@ -862,7 +861,7 @@
 																	<span class="regular-price">
 																	<span class="price">$210.00</span>                                    </span>
 																</div>
-																<div class="wrap-new-sale">								
+																<div class="wrap-new-sale">
 																</div>
 															</div>
 															<a class="btn-cart" title="Add to cart"><span>Add to cart</span></a>
@@ -874,8 +873,8 @@
 														<div class="item-image">
 															<div class="item-image-inner">
 																<a title="Plaid Cotton Shirt-Royal Blue-M" href="#" class="product-image">
-																<img alt="Plaid Cotton Shirt-Royal Blue-M" src="{{ asset('images/photo/11.png') }}" class="first_image"> 
-																</a>                               
+																<img alt="Plaid Cotton Shirt-Royal Blue-M" src="{{ asset('images/photo/11.png') }}" class="first_image">
+																</a>
 																<div class="item-btn">
 																	<div class="btn-wqc">
 																		<a class="link-wishlist" href="#" title="Add to wishlist"></a>
@@ -922,8 +921,8 @@
 														<div class="item-image">
 															<div class="item-image-inner">
 																<a title="Elizabeth Knit Top-Pink-L" href="#" class="product-image">
-																<img alt="Elizabeth Knit Top-Pink-L" src="{{ asset('images/photo/4.png') }}" class="first_image"> 
-																</a>                               
+																<img alt="Elizabeth Knit Top-Pink-L" src="{{ asset('images/photo/4.png') }}" class="first_image">
+																</a>
 																<div class="item-btn">
 																	<div class="btn-wqc">
 																		<a class="link-wishlist" href="#" title="Add to wishlist"></a>
@@ -957,7 +956,7 @@
 																	<span class="regular-price">
 																	<span class="price">$210.00</span>                                    </span>
 																</div>
-																<div class="wrap-new-sale">								
+																<div class="wrap-new-sale">
 																</div>
 															</div>
 															<a class="btn-cart" title="Add to cart"><span>Add to cart</span></a>
@@ -969,8 +968,8 @@
 														<div class="item-image">
 															<div class="item-image-inner">
 																<a title="Elizabeth Knit Top-Pink-S" href="#" class="product-image">
-																<img alt="Elizabeth Knit Top-Pink-S" src="{{ asset('images/photo/2.png') }}" class="first_image"> 
-																</a>                               
+																<img alt="Elizabeth Knit Top-Pink-S" src="{{ asset('images/photo/2.png') }}" class="first_image">
+																</a>
 																<div class="item-btn">
 																	<div class="btn-wqc">
 																		<a class="link-wishlist" href="#" title="Add to wishlist"></a>
@@ -1014,7 +1013,7 @@
 																</div>
 																<div class="wrap-new-sale">
 																	<div class="sale-item">
-																		52%	
+																		52%
 																	</div>
 																</div>
 															</div>
@@ -1027,8 +1026,8 @@
 														<div class="item-image">
 															<div class="item-image-inner">
 																<a title="Elizabeth Knit Top-Pink-S" href="#" class="product-image">
-																<img alt="Elizabeth Knit Top-Pink-S" src="{{ asset('images/photo/2.png') }}" class="first_image"> 
-																</a>                               
+																<img alt="Elizabeth Knit Top-Pink-S" src="{{ asset('images/photo/2.png') }}" class="first_image">
+																</a>
 																<div class="item-btn">
 																	<div class="btn-wqc">
 																		<a class="link-wishlist" href="#" title="Add to wishlist"></a>
@@ -1072,7 +1071,7 @@
 																</div>
 																<div class="wrap-new-sale">
 																	<div class="sale-item">
-																		52%	
+																		52%
 																	</div>
 																</div>
 															</div>
@@ -1099,7 +1098,7 @@
 						<div class="block-pre-related">
 							<div class="inner">
 								<div class="block-title">
-									<strong><span>Premium Related Products</span></strong>			
+									<strong><span>Premium Related Products</span></strong>
 								</div>
 								<div class="container-slider">
 									<div class="wrap_item products-grid">
@@ -1108,8 +1107,8 @@
 												<div class="item-image">
 													<div class="item-image-inner">
 														<a title="Elizabeth Knit Top-Pink-M" href="#" class="product-image">
-														<img alt="Elizabeth Knit Top-Pink-M" src="{{ asset('images/photo/11.png') }}"> 
-														</a>                              
+														<img alt="Elizabeth Knit Top-Pink-M" src="{{ asset('images/photo/11.png') }}">
+														</a>
 														<div class="item-btn">
 															<div class="btn-wqc">
 																<a class="link-wishlist" href="#" title="Add to wishlist"></a>
@@ -1142,10 +1141,10 @@
 															<span class="regular-price">
 															<span class="price">$210.00</span>                                    </span>
 														</div>
-														<div class="wrap-new-sale">								
+														<div class="wrap-new-sale">
 														</div>
 													</div>
-													<a 
+													<a
 														class="btn-cart" title="Add to cart"><span>Add to cart</span></a>
 												</div>
 											</div>
@@ -1155,8 +1154,8 @@
 												<div class="item-image">
 													<div class="item-image-inner">
 														<a title="Plaid Cotton Shirt-Royal Blue-M" href="#" class="product-image">
-														<img alt="Plaid Cotton Shirt-Royal Blue-M" src="{{ asset('images/photo/11.png') }}"> 
-														</a>                              
+														<img alt="Plaid Cotton Shirt-Royal Blue-M" src="{{ asset('images/photo/11.png') }}">
+														</a>
 														<div class="item-btn">
 															<div class="btn-wqc">
 																<a class="link-wishlist" href="#" title="Add to wishlist"></a>
@@ -1202,8 +1201,8 @@
 												<div class="item-image">
 													<div class="item-image-inner">
 														<a title="Elizabeth Knit Top-Pink-L" href="#" class="product-image">
-														<img alt="Elizabeth Knit Top-Pink-L" src="{{ asset('images/photo/11.png') }}"> 
-														</a>                              
+														<img alt="Elizabeth Knit Top-Pink-L" src="{{ asset('images/photo/11.png') }}">
+														</a>
 														<div class="item-btn">
 															<div class="btn-wqc">
 																<a class="link-wishlist" href="#" title="Add to wishlist"></a>
@@ -1236,7 +1235,7 @@
 															<span class="regular-price">
 															<span class="price">$210.00</span>                                    </span>
 														</div>
-														<div class="wrap-new-sale">								
+														<div class="wrap-new-sale">
 														</div>
 													</div>
 													<a class="btn-cart" title="Add to cart"><span>Add to cart</span></a>
@@ -1275,8 +1274,8 @@
 			<div class="container">
 				<div class="content-quick-search">
 					<label>Quick link:</label>
-					<a href="#">#</a>     
-					<a href="#">A</a>        
+					<a href="#">#</a>
+					<a href="#">A</a>
 					<a href="#">B</a>
 					<a href="#">C</a>
 					<a href="#">D</a>
@@ -1341,6 +1340,6 @@
 	<script src="{{ asset('js/jcarousellite_1.0.1.js') }}" type="text/javascript"></script>
 	<script type="text/javascript" src="{{ asset('js/jquery.mCustomScrollbar.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/theme.js') }}"></script>
-</div>	
+</div>
 </body>
 </html>
