@@ -82,10 +82,10 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
         </div>
-        <div class="input-group mb-3 row">
+        <div class="form-group mb-3 row">
             <label class="col-xl-3 col-sm-4" for="inputGroupFile02">Primary Image</label>
             <div class="col-xl-8 col-sm-7 pl-0 custom-file">
-            <input type="file" class="" id="inputGroupFile02" name="primary_image">
+            <input type="file" class="form-control" id="inputGroupFile02" name="primary_image">
             </div>
         </div>
         <div class="form-group mb-3 row">
@@ -257,12 +257,6 @@
                         @error('key_feature')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
-            </div>
-        </div>
-        <div class="input-group mb-3 row">
-            <label class="col-xl-3 col-sm-4" for="inputGroupFile02">Gallery Images</label>
-            <div class="col-xl-8 col-sm-7 pl-0  custom-file">
-            <input type="file" class="" id="inputGroupFile02" name="file[]" multiple="multiple">
             </div>
         </div>
     </div>

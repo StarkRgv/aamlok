@@ -18,6 +18,9 @@ class Controller extends BaseController
     {
         $category = Category::get();
         $subCategory = SubCategory::get();
-        return view('welcome', ['category' => $category, 'subCategory' => $subCategory]);
+        $newProduct = Product::where('status', 1)->latest()->take(10)->get();
+        return view('welcome', ['category' => $category,
+                                'subCategory' => $subCategory,
+                                'newProduct' => $newProduct]);
     }
 }
