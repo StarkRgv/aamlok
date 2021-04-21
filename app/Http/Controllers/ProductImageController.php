@@ -24,42 +24,16 @@ class ProductImageController extends Controller
 
     public function openProductImage(Request $request, Product $product)
     {
-        $images = ProductImages::where('product_id', $product->id)->get();
         $uniqueColors = ProductVariation::where('product_id', $product->id)->where('status', 1)->distinct()->get(['color']);
         $variationImages = ProductVariationImages::where('product_id', $product->id)->get();
         // return $uniqueColors;
         return view('seller.dashboard.add-product-images', ['product' => $product,
-                                                            'images' => $images,
                                                             'uniqueColors' => $uniqueColors,
                                                             'variationImages' => $variationImages
                                                             ]);
     }
 
-    public function storeImages(Request $request, Product $product)
-    {
-        $validatedData = $request->validate([
-            'file' => 'required',
-            ]);
-
-        if($request->file()) {
-                $files = $request->file();
-                $files = collect($files['file']);
-
-                foreach ($files as $key => $file) {
-
-                    $fileName = $file->getClientOriginalName();
-                    $filePath = $file->storeAs('uploads/gallery', $fileName, 'public');;
-                    $fileModel = new ProductImages;
-                    $fileModel->product_id = $product->id;
-                    $fileModel->name = $fileName;
-                    $fileModel->file_path = $filePath;
-                    $fileModel->save();
-                }
-            }
-            return redirect()->back()->with('success', 'Image Added Successfullly');
-    }
-
-    public function destroyImage(ProductImages $image)
+    public function destroyImage(ProductVariationImages $image)
     {
         $image->delete();
         return redirect()->back()->with('success', 'Image Deleted Successfullly');
@@ -67,34 +41,32 @@ class ProductImageController extends Controller
 
     public function storeVariationImages(Request $request, Product $product)
     {
-        // return $request;
         if ($request->hasFile('image')) {
 
             $files = $request->file();
             $color_id = $request->color_id;
             $files = collect($files['image']);
+            $imgCount = $files->count();
+            $dbCount = ProductVariationImages::where('product_id', $product->id)->where('color_id', $color_id)->count();
+            $totalCount = $imgCount + $dbCount;
 
-            foreach ($files as $key => $file) {
-                foreach ($color_id as $subKey => $id) {
-                    if ($key == $subKey) {
-                        $fileName = $file->getClientOriginalName();
-                        $filePath = $file->storeAs('uploads/variation', $fileName, 'public');
-
-                        $fileModel = ProductVariationImages::updateOrCreate(
-                        [
-                            'product_id' => $product->id,
-                            'color_id' => $id,
-                        ],
-                        [
-                            'file_name' => $fileName,
-                            'file_path' => $filePath,
-
-                        ]);
-                    }
+            if ($dbCount < 8 && $totalCount < 8) {
+                # code...
+                foreach ($files as $key => $file) {
+                    $fileName = $file->getClientOriginalName();
+                    $filePath = $file->storeAs('uploads/variation', $fileName, 'public');
+                    $fileModel = new ProductVariationImages;
+                    $fileModel->product_id = $product->id;
+                    $fileModel->color_id = $color_id;
+                    $fileModel->file_name = $fileName;
+                    $fileModel->file_path = $filePath;
+                    $fileModel->save();
                 }
+                return redirect()->back()->with('success', 'Image Added Successfullly');
+            }else{
+                return redirect()->back()->with('failure', 'Maximum images allowed - 7');
             }
-            return redirect()->back()->with('success', 'Image Added Successfullly');
         }
-        return redirect()->back()->with('success', 'No Image to add');
+        return redirect()->back()->with('failure', 'No Image to add');
     }
 }

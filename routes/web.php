@@ -47,9 +47,9 @@ Route::post('/variation/status/{variation?}', [App\Http\Controllers\ProductVaria
 
 // Product-Images
 Route::get('/product-images/{product?}', [App\Http\Controllers\ProductImageController::class, 'openProductImage'])->name('product.image');
-Route::post('/store/images/{product?}', [App\Http\Controllers\ProductImageController::class, 'storeImages'])->name('store.images');
-Route::post('/destroy/image/{image?}', [App\Http\Controllers\ProductImageController::class, 'destroyImage'])->name('destroy.image');
 Route::post('/store/variation/images/{product?}', [App\Http\Controllers\ProductImageController::class, 'storeVariationImages'])->name('store.variaion.images');
+Route::get('/destroy/image/{image?}', [App\Http\Controllers\ProductImageController::class, 'destroyImage'])->name('destroy.image');
+
 
 // CategoryProductVariationController
 Route::resource('category', 'App\Http\Controllers\CategoryController', ['only' => [ 'index', 'store', 'update' ,'destroy']]);

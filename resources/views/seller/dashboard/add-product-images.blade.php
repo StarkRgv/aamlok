@@ -24,18 +24,25 @@
 </div>
 <!-- Container-fluid Ends-->
 @section('content')
-  @if (session()->has('success'))
-    @component('components.notify-msg', ['class' => 'bg-success'])
-      @slot('message')
-        {{ session('success') }}
-      @endslot
-    @endcomponent
-  @endif
+@if (session()->has('success'))
+  @component('components.notify-msg', ['class' => 'bg-success'])
+    @slot('message')
+      {{ session('success') }}
+    @endslot
+  @endcomponent
+@endif
+@if (session()->has('failure'))
+  @component('components.notify-msg', ['class' => 'bg-danger'])
+    @slot('message')
+      {{ session('failure') }}
+    @endslot
+  @endcomponent
+@endif
 <!-- Container-fluid starts-->
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
-            <div class="card">
+            {{-- <div class="card">
                 <div class="card-header">
                     <h5>Add Product Gallery Images</h5>
                     <a href="{{ route('product.variation', ['product' => $product->id ]) }}" class="pull-right btn btn-primary ml-3">Variation <i class="fa fa-pencil" aria-hidden="true"></i></a>
@@ -84,44 +91,44 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="card">
                 <div class="card-header">
                     <h5>Add Product Variation Images</h5>
+                    <a href="{{ route('product.variation', ['product' => $product->id ]) }}" class="pull-right btn btn-primary ml-3">Variation <i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a href="{{ route('edit.product', ['product' => $product]) }}" class="pull-right btn btn-primary">Product <i class="fa fa-pencil" aria-hidden="true"></i></a>
                 </div>
                 <div class="card-body">
+                    @foreach ($uniqueColors as $key => $color)
                     <form action="{{ route('store.variaion.images', ['product' => $product]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @foreach ($uniqueColors as $key => $color)
                         <h4>{{ $color->colors->color }}</h4>
                         <div class="row mt-3">
-                            <div class="col-xl-6 col-sm-6 ">
+                            <div class="col-xl-5 col-sm-5 ">
                                 <div class="input-group mb-3 row">
                                     <div class="pl-3 custom-file">
-                                        <input type="file" class="form-control @error('file') is-invalid @enderror" name="image[]">
-                                        <input type="hidden" name="color_id[]" value="{{ $color->color }}">
+                                        <input type="file" class="form-control @error('file') is-invalid @enderror" name="image[]" multiple>
+                                        <input type="hidden" name="color_id" value="{{ $color->color }}">
                                     </div>
-                                    @error('file')
-                                    <div class="text-danger">{{ $message }}</div>
-                                    @enderror
                                 </div>
                             </div>
-                            <div class="col-xl-6 col-sm-6 ">
+                            <div class="col-xl-7 col-sm-7 ">
                                 @foreach ($variationImages as $v_image)
                                 @if ($color->color == $v_image->color_id)
                                 <div class="pull-right">
-                                    <img style="height: 5rem" src="{{ url('../storage/app/public/'.$v_image->file_path) }}"alt="{{ $v_image->file_name }}">
+                                    <img class="ml-2" style="height: 5rem" src="{{ url('../storage/app/public/'.$v_image->file_path) }}"alt="{{ $v_image->file_name }}">
+                                        <p class="text-center mt-1"><a href="{{ route('destroy.image', ['image' => $v_image]) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash" aria-hidden="true"></i></a></p>
                                 </div>
                                 @endif
                                 @endforeach
                             </div>
 
                         </div>
-                        <hr>
-                        @endforeach
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <hr>
                     </form>
+                    @endforeach
                 </div>
             </div>
         </div>
