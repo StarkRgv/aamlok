@@ -260,7 +260,7 @@
 						<div id="messages_product_view"></div>
 						<div class="product-view">
 							<div class="product-essential">
-								<form enctype="multipart/form-data" id="product_addtocart_form" method="post" action="#">
+								{{-- <form enctype="multipart/form-data" id="product_addtocart_form" method="post" action="#"> --}}
 									<input type="hidden" value="MG4MpXwwnitHheJz" name="form_key">
 									<div class="no-display">
 										<input type="hidden" value="916" name="product">
@@ -271,7 +271,7 @@
 											<div class="img-left">
 												<div class="product-image product-image-zoom">
 													<div class="product-image-gallery">
-														<img width="380" height="570" title="Plaid Cotton Shirt-Khaki-M" alt="" src="{{ url('../storage/app/public/'.$product->image->file_path) }}" class="gallery-image visible" id="image-main">
+														<img width="380" height="570" title="Plaid Cotton Shirt-Khaki-M" alt="" src="{{ url('../storage/app/public/'.$product->primary_image) }}" class="gallery-image visible" id="image-main">
 													</div>
 												</div>
 												<!--product-image-zoom-->
@@ -299,84 +299,13 @@
 												<div class="inner">
 													<div class="jCarouselLite">
 														<ul class="product-image-thumbs">
-															{{-- {{ $product->image }} --}}
-															@foreach($product->images as $key => $image)
+															@foreach($images as $key => $image)
 															<li >
 																<a data-image-index="0" title="" href="#" class="thumb-link">
-																<img alt="" src="{{ url('../storage/app/public/'.$image->file_path) }}">
+																    <img alt="image" src="{{ url('../storage/app/public/'.$image->file_path) }}">
 																</a>
 															</li>
 															@endforeach
-															{{-- <li >
-																<a data-image-index="1" title="pink" href="#" class="thumb-link">
-																<img alt="pink" src="images/photo/12.png">
-																</a>
-															</li>
-															<li >
-																<a data-image-index="2" title="indigo" href="#" class="thumb-link">
-																<img alt="indigo" src="images/photo/13.png">
-																</a>
-															</li>
-															<li >
-																<a data-image-index="3" title="orange" href="#" class="thumb-link">
-																<img alt="orange" src="images/photo/14.png">
-																</a>
-															</li>
-															<li >
-																<a data-image-index="4" title="" href="#" class="thumb-link">
-																<img alt="" src="images/photo/15.png">
-																</a>
-															</li>
-															<li >
-																<a data-image-index="0" title="" href="#" class="thumb-link">
-																<img alt="" src="images/photo/16.png">
-																</a>
-															</li>
-															<li >
-																<a data-image-index="1" title="pink" href="#" class="thumb-link">
-																<img alt="pink" src="images/photo/17.png">
-																</a>
-															</li>
-															<li >
-																<a data-image-index="2" title="indigo" href="#" class="thumb-link">
-																<img alt="indigo" src="images/photo/18.png">
-																</a>
-															</li>
-															<li >
-																<a data-image-index="3" title="orange" href="#" class="thumb-link">
-																<img alt="orange" src="images/photo/19.png">
-																</a>
-															</li>
-															<li >
-																<a data-image-index="4" title="" href="#" class="thumb-link">
-																<img alt="" src="images/photo/20.png">
-																</a>
-															</li>
-															<li >
-																<a data-image-index="0" title="" href="#" class="thumb-link">
-																<img alt="" src="images/photo/1.png">
-																</a>
-															</li>
-															<li >
-																<a data-image-index="1" title="pink" href="#" class="thumb-link">
-																<img alt="pink" src="images/photo/2.png">
-																</a>
-															</li>
-															<li >
-																<a data-image-index="2" title="indigo" href="#" class="thumb-link">
-																<img alt="indigo" src="images/photo/11.png">
-																</a>
-															</li>
-															<li >
-																<a data-image-index="3" title="orange" href="#" class="thumb-link">
-																<img alt="orange" src="images/photo/11.png">
-																</a>
-															</li>
-															<li>
-																<a data-image-index="4" title="" href="#" class="thumb-link">
-																<img alt="" src="images/photo/11.png">
-																</a>
-															</li> --}}
 														</ul>
 													</div>
 												</div>
@@ -431,36 +360,25 @@
 												<div class="product-addto-inner">
 													<div id="product-options-wrapper" class="product-options">
 														<div class="last">
-															<div class="group-item  first item1">
-																<span><label>Color</label></span>
-																<div class="option-color">
-																	<div class="input-box">
-																		<ul class="options-list" id="options-41-list">
-																			<li><input type="radio" checked="checked" value="" name="options[41]" class="radio product-custom-option" id="options_41"><span class="label"><label for="options_41">None</label></span></li>
-																			<li class="item2" style="background: rgb(77, 109, 189) none repeat scroll 0% 0%;"><input type="radio" value="201" class="radio  product-custom-option"><span class="label"><label>Blue_#4d6dbd <span class="price-notice">+<span class="price">$1.00</span></span></label></span></li>
-																			<li style="background: rgb(114, 178, 38) none repeat scroll 0% 0%;"><input type="radio" value="202" class="radio  product-custom-option"><span class="label"><label>Green_#72b226 <span class="price-notice">+<span class="price">$2.00</span></span></label></span></li>
-																			<li style="background: rgb(47, 188, 218) none repeat scroll 0% 0%;"><input type="radio" value="203" class="radio  product-custom-option"><span class="label"><label>Indigo_#2fbcda <span class="price-notice">+<span class="price">$3.00</span></span></label></span></li>
-																			<li style="background: rgb(251, 93, 93) none repeat scroll 0% 0%;"><input type="radio" value="204" class="radio  product-custom-option"><span class="label"><label>Red_#fb5d5d <span class="price-notice">+<span class="price">$4.00</span></span></label></span></li>
-																			<li style="background: rgb(255, 224, 12) none repeat scroll 0% 0%;"><input type="radio" value="205" class="radio  product-custom-option"><span class="label"><label>Yellow_#ffe00c <span class="price-notice">+<span class="price">$5.00</span></span></label></span></li>
-																		</ul>
-																		<span class="group-color">
-																		<input type="hidden" value="#4d6dbd" name="options_41_2" class="item_options">
-																		<input type="hidden" value="#72b226" name="options_41_3" class="item_options">
-																		<input type="hidden" value="#2fbcda" name="options_41_4" class="item_options">
-																		<input type="hidden" value="#fb5d5d" name="options_41_5" class="item_options">
-																		<input type="hidden" value="#ffe00c" name="options_41_6" class="item_options">
-																		</span>
-																	</div>
-																</div>
-															</div>
 															<div class="group-item  last first">
 																<span><label>Size</label></span>
 																<div class="last option-size">
 																	<div class="input-box">
 																		<ul class="options-list" id="options-42-list">
-																			<li><input type="radio" checked="checked" value="" name="options[42]" class="radio product-custom-option" id="options_42"><span class="label"><label for="options_42">None</label></span></li>
                                                                             @foreach ($sizes as $key => $size)
 																			<li class="item2"><input type="radio" value="206" class="radio  product-custom-option"><span class="label"><label> {{ $size->sizes->size }} </label></span></li>
+                                                                            @endforeach
+																		</ul>
+																	</div>
+																</div>
+															</div>
+                                                            <div class="group-item  last first">
+																<span><label>Color</label></span>
+																<div class="last option-size">
+																	<div class="input-box">
+																		<ul class="options-list" id="options-42-list">
+                                                                            @foreach ($colors as $key => $color)
+																			<a href="{{ route('details', ['product' => $product, 'color'=> $color->color]) }}"><li class="item2"><span class="label"><label> {{ $color->colors->color }} </label></span></li></a>
                                                                             @endforeach
 																		</ul>
 																	</div>
@@ -507,7 +425,7 @@
 										</div>
 									</div> --}}
 									<input type="hidden" name="flycart_add" value="1">
-								</form>
+								{{-- </form> --}}
 								<div id="product-tabs">
 									<div class="inner">
 										<div class="tab-item">

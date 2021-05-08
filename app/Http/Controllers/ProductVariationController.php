@@ -47,7 +47,7 @@ class ProductVariationController extends Controller
         $size = $request->size;
         foreach($colors as $color){
             foreach($size as $item){
-                $dataCount = ProductVariation::where('color', $color)->where('size', $item)->count();
+                $dataCount = ProductVariation::where('product_id', $product_id)->where('color', $color)->where('size', $item)->count();
                 if ($dataCount == 0) {
                     $data = new ProductVariation;
                     $data->category_id = $product->category_id;
