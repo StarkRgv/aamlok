@@ -46,7 +46,7 @@ class ListingController extends Controller
             }
             if ($request->has('brand_id')) {
                 $id = $request->brand_id;
-                $brands = Product::where('brand_name', $id)->where('status', 1)->get();
+                $products = Product::where('brand_name', $id)->where('status', 1)->get();
                 return view('listing', ['categories' => $categories,
                                         'products' => $products,
                                         'genders' => $genders,

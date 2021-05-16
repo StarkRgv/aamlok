@@ -255,6 +255,7 @@
                                             @endauth
                                             @if(auth()->user())
     											<li><a href="{{ route('home') }}">{{ auth()->user()->name }}</a></li>
+    											<li><a href="{{ route('logout') }}">Logout</a></li>
                                             @endauth
 
 										</ul>
@@ -273,50 +274,44 @@
 										<span>Call Us: (009) 66 55 819 - 080 566 996</span>
 									</div>
 								</div>
+                                @if (auth()->user())
 								<div class="col-md-3 col-sm-3 col-xs-6">
 									<div class="shop-cart-box block-cart box">
 										<a href="#">
 											<img src="images/home_3/icon-cart.png" alt="" />
-											<sup>0</sup>
+                                            @php
+                                            $count = $cartProduct->count();
+                                            $total = $cartProduct->sum('selling_price');
+                                            @endphp
+											<sup>{{ $count }}</sup>
 											<span>shopping Cart</span>
 										</a>
 										<div class="block-content box-inner">
 											<div class="inner">
 												<p class="block-subtitle">Recently added item(s)</p>
 												<ol class="mini-products-list" id="cart-sidebar">
+                                                    @forelse ($cartProduct as $product)
 													<li class="item odd">
-														<a class="product-image" href="#">
-														<img width="70" height="84" alt="" src="images/home_1/img-cart.gif">
+                                                        <a class="product-image" href="{{ route('details', ['product' => $product]) }}">
+                                                            <img width="70" height="84" alt="" src="{{ url('../storage/app/public/'.$product->primary_image) }}">
 														</a>
-														<a class="btn-remove" href="">X</a>
-														<a class="btn-edit" href="#">Edit</a>
+														<a class="btn-remove" href="{{ route('unfill.cart', ['product' => $product ]) }}">X</a>
 														<div class="product-details">
-															<p class="product-name">
-																<a href="#">Bath Minerals and Salt</a>
+                                                            <p class="product-name">
+                                                                <a href="{{ route('details', ['product' => $product]) }}">{{ $product->title }}</a>
 															</p>
-															<span class="price">$25.00</span>
-															<strong>1</strong>
+															<span class="price">₹{{ $product->selling_price }}</span>
+															{{-- <strong>1</strong> --}}
 														</div>
 													</li>
-													<li class="item last even">
-														<a class="product-image" href="#">
-														<img width="70" height="84" alt="" src="images/home_1/img-cart.gif">
-														</a>
-														<a class="btn-remove" href="#">X</a>
-														<a class="btn-edit" href="#">Edit</a>
-														<div class="product-details">
-															<p class="product-name">
-																<a href="#">Large Camera Bag</a>
-															</p>
-															<span class="price">$20.00</span>
-															<strong>1</strong>
-														</div>
-													</li>
+                                                    @empty
+                                                    <p>No Product in Cart</p>
+                                                    @endforelse
 												</ol>
 												<div class="summary">
 													<p class="subtotal">
 														<span class="label">Subtotal:</span>
-														<span class="price">$45.00</span>
+														<span class="price">₹{{ $total }}</span>
 													</p>
 												</div>
 												<div class="actions">
@@ -329,6 +324,7 @@
 										</div>
 									</div>
 								</div>
+                                @endif
 							</div>
 						</div>
 					</div>
@@ -517,11 +513,11 @@
 												<div class="info-product-cart">
                                                     <div class="inner-info-product-cart">
 														<ul>
-															<li><a href="#" class="link-wishlist"><i class="fa fa-heart"></i></a></li>
+															<li><a href="{{ route('fill.wish', ['product' => $product]) }}" class="link-wishlist"><i class="fa fa-heart"></i></a></li>
 															<li><a href="#" class="link-quick-view"><i class="fa fa-search"></i></a></li>
 															<li><a href="#" class="link-compare"><i class="fa fa-external-link-square"></i></a></li>
 														</ul>
-														<a href="#" class="link-product-add-cart">Add to cart</a>
+														<a href="{{ route('fill.cart', ['product' => $product ]) }}" class="link-product-add-cart">Add to cart</a>
 													</div>
 												</div>
 											</div>

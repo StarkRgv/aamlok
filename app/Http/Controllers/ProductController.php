@@ -23,7 +23,7 @@ class ProductController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'admin']);
     }
 
     /**
@@ -79,7 +79,7 @@ class ProductController extends Controller
             if($request->file()) {
                 $image = $request->primary_image;
                 $imageName = $image->getClientOriginalName();
-                $imagePath = $image->storeAs('uploads/primary', $imageName, 'public');
+                $imagePath = $image->store('primary', 'public');
             }
 
             $data = new Product;

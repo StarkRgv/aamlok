@@ -28,46 +28,65 @@ Route::get('/listing', [App\Http\Controllers\ListingController::class, 'openList
 // Details Page
 Route::get('/details/{product?}', [App\Http\Controllers\DetailsController::class, 'openDetails'])->name('details');
 
-// Product
-Route::get('/product', [App\Http\Controllers\ProductController::class, 'openAddProduct'])->name('product');
-Route::post('/store/product', [App\Http\Controllers\ProductController::class, 'storeProduct'])->name('store.product');
-Route::get('/edit-product/{product?}', [App\Http\Controllers\ProductController::class, 'openEditProduct'])->name('edit.product');
-Route::post('/update/product/{product?}', [App\Http\Controllers\ProductController::class, 'updateProduct'])->name('update.product');
-Route::get('/active-product', [App\Http\Controllers\ProductController::class, 'openActiveProductList'])->name('active.product');
-Route::get('/retired-product', [App\Http\Controllers\ProductController::class, 'openRetiredProductList'])->name('retired.product');
-Route::get('/product-details/{product?}', [App\Http\Controllers\ProductController::class, 'openProductDetails'])->name('product.detail');
-Route::post('/product/status/{product?}', [App\Http\Controllers\ProductController::class, 'statusProduct'])->name('status.product');
+// Admin Middleware
+Route::middleware(['admin'])->group(function () {
 
-// Product-Variation
-Route::get('/product-variation/{product?}', [App\Http\Controllers\ProductVariationController::class, 'openProductVariation'])->name('product.variation');
-Route::post('/store/variation', [App\Http\Controllers\ProductVariationController::class, 'addVariaton'])->name('store.variation');
-Route::post('/update/variation/{variation?}', [App\Http\Controllers\ProductVariationController::class, 'updateVariaton'])->name('update.variation');
-Route::post('/destroy/variation/{variation?}', [App\Http\Controllers\ProductVariationController::class, 'destroyVariation'])->name('destroy.variation');
-Route::post('/variation/status/{variation?}', [App\Http\Controllers\ProductVariationController::class, 'statusVariation'])->name('status.variation');
+    // Product
+    Route::get('/product', [App\Http\Controllers\ProductController::class, 'openAddProduct'])->name('product');
+    Route::post('/store/product', [App\Http\Controllers\ProductController::class, 'storeProduct'])->name('store.product');
+    Route::get('/edit-product/{product?}', [App\Http\Controllers\ProductController::class, 'openEditProduct'])->name('edit.product');
+    Route::post('/update/product/{product?}', [App\Http\Controllers\ProductController::class, 'updateProduct'])->name('update.product');
+    Route::get('/active-product', [App\Http\Controllers\ProductController::class, 'openActiveProductList'])->name('active.product');
+    Route::get('/retired-product', [App\Http\Controllers\ProductController::class, 'openRetiredProductList'])->name('retired.product');
+    Route::get('/product-details/{product?}', [App\Http\Controllers\ProductController::class, 'openProductDetails'])->name('product.detail');
+    Route::post('/product/status/{product?}', [App\Http\Controllers\ProductController::class, 'statusProduct'])->name('status.product');
 
-// Product-Images
-Route::get('/product-images/{product?}', [App\Http\Controllers\ProductImageController::class, 'openProductImage'])->name('product.image');
-Route::post('/store/variation/images/{product?}', [App\Http\Controllers\ProductImageController::class, 'storeVariationImages'])->name('store.variaion.images');
-Route::get('/destroy/image/{image?}', [App\Http\Controllers\ProductImageController::class, 'destroyImage'])->name('destroy.image');
+    // Product-Variation
+    Route::get('/product-variation/{product?}', [App\Http\Controllers\ProductVariationController::class, 'openProductVariation'])->name('product.variation');
+    Route::post('/store/variation', [App\Http\Controllers\ProductVariationController::class, 'addVariaton'])->name('store.variation');
+    Route::post('/update/variation/{variation?}', [App\Http\Controllers\ProductVariationController::class, 'updateVariaton'])->name('update.variation');
+    Route::post('/destroy/variation/{variation?}', [App\Http\Controllers\ProductVariationController::class, 'destroyVariation'])->name('destroy.variation');
+    Route::post('/variation/status/{variation?}', [App\Http\Controllers\ProductVariationController::class, 'statusVariation'])->name('status.variation');
+
+    // Product-Images
+    Route::get('/product-images/{product?}', [App\Http\Controllers\ProductImageController::class, 'openProductImage'])->name('product.image');
+    Route::post('/store/variation/images/{product?}', [App\Http\Controllers\ProductImageController::class, 'storeVariationImages'])->name('store.variaion.images');
+    Route::get('/destroy/image/{image?}', [App\Http\Controllers\ProductImageController::class, 'destroyImage'])->name('destroy.image');
 
 
-// CategoryProductVariationController
-Route::resource('category', 'App\Http\Controllers\CategoryController', ['only' => [ 'index', 'store', 'update' ,'destroy']]);
+    // Category
+    Route::resource('category', 'App\Http\Controllers\CategoryController', ['only' => [ 'index', 'store', 'update' ,'destroy']])->middleware('admin');;
 
-// Sub-Category
-Route::resource('sub-category', 'App\Http\Controllers\SubCategoryController', ['only' => [ 'index', 'store', 'update' ,'destroy' ]]);
+    // Sub-Category
+    Route::resource('sub-category', 'App\Http\Controllers\SubCategoryController', ['only' => [ 'index', 'store', 'update' ,'destroy' ]]);
 
-// Gender
-Route::resource('gender', 'App\Http\Controllers\GenderController', ['only' => [ 'index', 'store', 'update' ,'destroy' ]]);
+    // Gender
+    Route::resource('gender', 'App\Http\Controllers\GenderController', ['only' => [ 'index', 'store', 'update' ,'destroy' ]]);
 
-// Brand
-Route::resource('brand', 'App\Http\Controllers\BrandController', ['only' => [ 'index', 'store', 'update' ,'destroy']]);
+    // Brand
+    Route::resource('brand', 'App\Http\Controllers\BrandController', ['only' => [ 'index', 'store', 'update' ,'destroy']]);
 
-// Color
-Route::resource('color', 'App\Http\Controllers\ColorsController', ['only' => [ 'index', 'store', 'update' ,'destroy']]);
+    // Color
+    Route::resource('color', 'App\Http\Controllers\ColorsController', ['only' => [ 'index', 'store', 'update' ,'destroy']]);
 
-// Size
-Route::resource('size', 'App\Http\Controllers\SizeController', ['only' => [ 'index', 'store', 'update' ,'destroy']]);
+    // Size
+    Route::resource('size', 'App\Http\Controllers\SizeController', ['only' => [ 'index', 'store', 'update' ,'destroy']]);
+});
+
+Route::middleware(['user'])->group(function () {
+
+    // CartController
+    Route::get('/fill/cart/{product?}', [App\Http\Controllers\CartController::class, 'fillCart'])->name('fill.cart');
+    Route::get('/unfill/cart/{product?}', [App\Http\Controllers\CartController::class, 'unFillCart'])->name('unfill.cart');
+
+    // WishlistController
+    Route::get('/fill/wish/{product?}', [App\Http\Controllers\WishlistController::class, 'fillWish'])->name('fill.wish');
+
+    // UserController
+    Route::get('/your-cart', [App\Http\Controllers\UserController::class, 'yourCart'])->name('your.cart');
+    Route::get('/your-wishlist', [App\Http\Controllers\UserController::class, 'yourWishlist'])->name('your.wishlist');
+
+});
 
 // Search
 Route::get('/search', [App\Http\Controllers\SearchController::class, 'search'])->name('search');

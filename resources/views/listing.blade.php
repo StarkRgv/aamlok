@@ -247,6 +247,7 @@
 										@endauth
         								@if(auth()->user())
 										<li><a href="{{ route('home') }}" class="link-user-top">{{ auth()->user()->name }}</a></li>
+										<li><a href="{{ route('logout') }}" class="link-user-top">Logout</a></li>
 										@endauth
 									</ul>
 								</div>
@@ -546,7 +547,7 @@
 													</a>
 													<div class="item-btn">
 														<div class="btn-wqc">
-															<a href="#" class="link-wishlist"></a>
+															<a href="{{ route('fill.wish', ['product' => $product]) }}" class="link-wishlist"></a>
 															<a class="vt_quickview_handler" href="#"><span>Quick View</span></a>
 															<a href="#" class="link-compare"></a>
 														</div>
@@ -584,11 +585,13 @@
 													</div>
 												</div>
 											</div>
+                                            {{-- @if (Auth::User()->role == 'user') --}}
 											<div class="wrap-btn-cart">
-												<div class="inner-wrap-btn-cart">
-													<button class="btn-cart"><span>Add to cart</span></button>
+                                                <div class="inner-wrap-btn-cart">
+                                                    <a href="{{ route('fill.cart', ['product' => $product ]) }}" class="btn-cart"><span>Add to cart</span></a>
 												</div>
 											</div>
+                                            {{-- @endif --}}
 										</div>
 									</li>
                                     @empty
