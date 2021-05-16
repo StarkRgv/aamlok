@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductVariation;
 use App\Models\ProductVariationImages;
+use URL;
 
 
 
 class DetailsController extends Controller
 {
     public function openDetails(Request $request, Product $product){
-        // return $request->color;
+        // return app()->request;
         $stockCount = ProductVariation::where('product_id', $product->id)->where('status', 1)->sum('quantity');
         $sizes = ProductVariation::where('product_id', $product->id)->where('status', 1)->distinct()->get(['size']);
         $colors = ProductVariation::where('product_id', $product->id)->where('status', 1)->distinct()->get(['color']);

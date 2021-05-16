@@ -156,8 +156,8 @@
 			<div class="container">
 				<div class="content-quick-search">
 					<label>Quick link:</label>
-					<a href="#">#</a>     
-					<a href="#">A</a>        
+					<a href="#">#</a>
+					<a href="#">A</a>
 					<a href="#">B</a>
 					<a href="#">C</a>
 					<a href="#">D</a>

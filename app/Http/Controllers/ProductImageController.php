@@ -19,7 +19,7 @@ class ProductImageController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'admin']);
     }
 
     public function openProductImage(Request $request, Product $product)
@@ -54,7 +54,7 @@ class ProductImageController extends Controller
                 # code...
                 foreach ($files as $key => $file) {
                     $fileName = $file->getClientOriginalName();
-                    $filePath = $file->storeAs('uploads/variation', $fileName, 'public');
+                    $filePath = $file->store('/variation', 'public');
                     $fileModel = new ProductVariationImages;
                     $fileModel->product_id = $product->id;
                     $fileModel->color_id = $color_id;

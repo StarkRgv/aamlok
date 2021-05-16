@@ -34,5 +34,10 @@ public function genders()
     return $this->images()->first();
 }
 
+public function users()
+{
+    return $this->belongsToMany(User::class);
+}
+
 
 }

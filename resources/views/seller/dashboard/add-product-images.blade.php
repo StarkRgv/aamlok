@@ -125,10 +125,18 @@
                             </div>
 
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Upload</button>
                         <hr>
                     </form>
                     @endforeach
+                    @php
+                        $status = app()->request->product->status;
+                    @endphp
+                    @if ($status == 1)
+                    <a class="btn btn-info" href="{{ route('active.product') }}">Submit</a>
+                    @else
+                    <a class="btn btn-info" href="{{ route('retired.product') }}">Submit</a>
+                    @endif
                 </div>
             </div>
         </div>

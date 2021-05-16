@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\User;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -19,8 +21,13 @@ class Controller extends BaseController
         $category = Category::get();
         $subCategory = SubCategory::get();
         $newProduct = Product::where('status', 1)->latest()->take(10)->get();
+        $user = Auth::User();
+        if(!empty($user)){
+            $cartProduct = $user->products()->get();
+        }
         return view('welcome', ['category' => $category,
                                 'subCategory' => $subCategory,
-                                'newProduct' => $newProduct]);
+                                'newProduct' => $newProduct,
+                                'cartProduct' => $cartProduct ?? null]);
     }
 }

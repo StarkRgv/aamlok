@@ -361,6 +361,10 @@
 													<div id="product-options-wrapper" class="product-options">
 														<div class="last">
 															<div class="group-item  last first">
+                                                                @php
+                                                                    $status = app()->request->color;
+                                                                @endphp
+                                                                {{ $status }}
 																<span><label>Size</label></span>
 																<div class="last option-size">
 																	<div class="input-box">
