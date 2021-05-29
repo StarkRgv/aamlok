@@ -19,6 +19,13 @@
 	<link rel="stylesheet" type="text/css" href="css/responsive.css" media="all"/>
 </head>
 <body>
+@if (session()->has('success'))
+    @component('components.notify-msg', ['class' => 'bg-success'])
+      @slot('message')
+        {{ session('success') }}
+      @endslot
+    @endcomponent
+@endif
 <div class="wrap">
 	<header id="header" class="header-page">
 		<div class="container">
@@ -72,158 +79,42 @@
 										<li>
 											<div class="wrap-mega-menu">
 												<div class="row">
+                                                    @foreach ($categories as $cat)
 													<div class="col-md-3 col-sm-3 col-xs-12">
-														<div class="mega-menu-slider-brand">
-															<h2>Men</h2>
+                                                        <div class="mega-menu-slider-brand">
+                                                            <h2>{{ $cat->category }}</h2>
 															<div class="wrap-item">
-																<div class="item">
+                                                                <div class="item">
 																	<div class="inner-brand">
-																		<ul>
-																			<li><a href="#">Tops</a></li>
-																			<li><a href="#">Sweaters</a></li>
-																			<li><a href="#">Bottoms</a></li>
-																			<li><a href="#">Dresses</a></li>
-																			<li><a href="#">Coats &amp; Jackets</a></li>
-																			<li><a href="#">Scarves</a></li>
-																			<li><a href="#">Pants</a></li>
+                                                                        <ul>
+                                                                            @foreach ($subCategory->where('category_id', $cat->id) as $subCat)
+																			<li><a href="{{ route('listing', ['sub_category_id' => $subCat->id]) }}">{{ $subCat->sub_category }}</a></li>
+                                                                            @endforeach
 																		</ul>
 																	</div>
 																</div>
-																<div class="item">
+																{{-- <div class="item">
 																	<div class="inner-brand">
-																		<a href="#"><img src="images/banner/logo-brand-01.png" alt=""/></a>
+                                                                        <a href="#"><img src="images/banner/logo-brand-01.png" alt=""/></a>
 																		<a href="#"><img src="images/banner/logo-brand-03.png" alt=""/></a>
 																		<a href="#"><img src="images/banner/logo-brand-02.png" alt=""/></a>
 																	</div>
 																</div>
 																<div class="item">
-																	<div class="inner-brand">
-																		<a href="#"><img src="images/banner/logo-brand-02.png" alt=""/></a>
+                                                                    <div class="inner-brand">
+                                                                        <a href="#"><img src="images/banner/logo-brand-02.png" alt=""/></a>
 																		<a href="#"><img src="images/banner/logo-brand-03.png" alt=""/></a>
 																		<a href="#"><img src="images/banner/logo-brand-01.png" alt=""/></a>
 																	</div>
-																</div>
+																</div> --}}
 															</div>
 															<div class="owl-direct-nav">
-																<a class="prev" href="#"><i class="fa fa-arrow-circle-left"></i></a>
+                                                                <a class="prev" href="#"><i class="fa fa-arrow-circle-left"></i></a>
 																<a class="next" href="#"><i class="fa fa-arrow-circle-right"></i></a>
 															</div>
 														</div>
 													</div>
-													<div class="col-md-3 col-sm-3 col-xs-12">
-														<div class="mega-menu-slider-brand">
-															<h2>Women</h2>
-															<div class="wrap-item">
-																<div class="item">
-																	<div class="inner-brand">
-																		<ul>
-																			<li><a href="#">Tops</a></li>
-																			<li><a href="#">Sweaters</a></li>
-																			<li><a href="#">Bottoms</a></li>
-																			<li><a href="#">Dresses</a></li>
-																			<li><a href="#">Coats &amp; Jackets</a></li>
-																			<li><a href="#">Scarves</a></li>
-																			<li><a href="#">Pants</a></li>
-																		</ul>
-																	</div>
-																</div>
-																<div class="item">
-																	<div class="inner-brand">
-																		<a href="#"><img src="images/banner/logo-brand-01.png" alt=""/></a>
-																		<a href="#"><img src="images/banner/logo-brand-03.png" alt=""/></a>
-																		<a href="#"><img src="images/banner/logo-brand-02.png" alt=""/></a>
-																	</div>
-																</div>
-																<div class="item">
-																	<div class="inner-brand">
-																		<a href="#"><img src="images/banner/logo-brand-02.png" alt=""/></a>
-																		<a href="#"><img src="images/banner/logo-brand-03.png" alt=""/></a>
-																		<a href="#"><img src="images/banner/logo-brand-01.png" alt=""/></a>
-																	</div>
-																</div>
-															</div>
-															<div class="owl-direct-nav">
-																<a class="prev" href="#"><i class="fa fa-arrow-circle-left"></i></a>
-																<a class="next" href="#"><i class="fa fa-arrow-circle-right"></i></a>
-															</div>
-														</div>
-													</div>
-													<div class="col-md-3 col-sm-3 col-xs-12">
-														<div class="mega-menu-slider-brand">
-															<h2>Boys</h2>
-															<div class="wrap-item">
-																<div class="item">
-																	<div class="inner-brand">
-																		<ul>
-																			<li><a href="#">Tops</a></li>
-																			<li><a href="#">Sweaters</a></li>
-																			<li><a href="#">Bottoms</a></li>
-																			<li><a href="#">Dresses</a></li>
-																			<li><a href="#">Coats &amp; Jackets</a></li>
-																			<li><a href="#">Scarves</a></li>
-																			<li><a href="#">Pants</a></li>
-																		</ul>
-																	</div>
-																</div>
-																<div class="item">
-																	<div class="inner-brand">
-																		<a href="#"><img src="images/banner/logo-brand-01.png" alt=""/></a>
-																		<a href="#"><img src="images/banner/logo-brand-03.png" alt=""/></a>
-																		<a href="#"><img src="images/banner/logo-brand-02.png" alt=""/></a>
-																	</div>
-																</div>
-																<div class="item">
-																	<div class="inner-brand">
-																		<a href="#"><img src="images/banner/logo-brand-02.png" alt=""/></a>
-																		<a href="#"><img src="images/banner/logo-brand-03.png" alt=""/></a>
-																		<a href="#"><img src="images/banner/logo-brand-01.png" alt=""/></a>
-																	</div>
-																</div>
-															</div>
-															<div class="owl-direct-nav">
-																<a class="prev" href="#"><i class="fa fa-arrow-circle-left"></i></a>
-																<a class="next" href="#"><i class="fa fa-arrow-circle-right"></i></a>
-															</div>
-														</div>
-													</div>
-													<div class="col-md-3 col-sm-3 col-xs-12">
-														<div class="mega-menu-slider-brand">
-															<h2>Girls</h2>
-															<div class="wrap-item">
-																<div class="item">
-																	<div class="inner-brand">
-																		<ul>
-																			<li><a href="#">Tops</a></li>
-																			<li><a href="#">Sweaters</a></li>
-																			<li><a href="#">Bottoms</a></li>
-																			<li><a href="#">Dresses</a></li>
-																			<li><a href="#">Coats &amp; Jackets</a></li>
-																			<li><a href="#">Scarves</a></li>
-																			<li><a href="#">Pants</a></li>
-																		</ul>
-																	</div>
-																</div>
-																<div class="item">
-																	<div class="inner-brand">
-																		<a href="#"><img src="images/banner/logo-brand-01.png" alt=""/></a>
-																		<a href="#"><img src="images/banner/logo-brand-03.png" alt=""/></a>
-																		<a href="#"><img src="images/banner/logo-brand-02.png" alt=""/></a>
-																	</div>
-																</div>
-																<div class="item">
-																	<div class="inner-brand">
-																		<a href="#"><img src="images/banner/logo-brand-02.png" alt=""/></a>
-																		<a href="#"><img src="images/banner/logo-brand-03.png" alt=""/></a>
-																		<a href="#"><img src="images/banner/logo-brand-01.png" alt=""/></a>
-																	</div>
-																</div>
-															</div>
-															<div class="owl-direct-nav">
-																<a class="prev" href="#"><i class="fa fa-arrow-circle-left"></i></a>
-																<a class="next" href="#"><i class="fa fa-arrow-circle-right"></i></a>
-															</div>
-														</div>
-													</div>
+                                                    @endforeach
 												</div>
 											</div>
 										</li>
@@ -768,7 +659,13 @@
 		</div>
 	</footer>
 	<!-- End Footer -->
-	<script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
+    <script src="{{ asset('seller/js/jquery-3.3.1.min.js') }}"></script>
+    <script>
+    $(".notification").animate({right: '40px'});
+            setTimeout(function(){
+            $('.notification').slideUp(1000)}, 2500);
+    </script>
+	{{-- <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script> --}}
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/owl.carousel.js"></script>
 	<script type="text/javascript" src="js/theme.js"></script>

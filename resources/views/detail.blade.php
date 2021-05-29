@@ -21,6 +21,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/responsive.css') }}" media="all"/>
 </head>
 <body>
+
 <div class="wrap">
 	<header id="header" class="header-page">
         <div class="container">
@@ -338,8 +339,16 @@
 											</div>
 											<div class="availability in-stock box-style">
 												<ul>
+                                                    @php
+                                                        $status = app()->request->color;
+                                                        $count = $sizes->sum('quantity');
+                                                    @endphp
 													<li class="first">Availability</li>
-													<li class="last">In stock ({{ $stockCount }})</li>
+                                                    @if (!empty($status))
+													    <li class="last">In stock ({{ $count }})</li>
+                                                    @else
+													    <li class="last">In stock ({{ $stockCount }})</li>
+                                                    @endif
 												</ul>
 											</div>
 											<div class="short-description">
@@ -360,22 +369,23 @@
 												<div class="product-addto-inner">
 													<div id="product-options-wrapper" class="product-options">
 														<div class="last">
+                                                            @if (!empty($status))
+
 															<div class="group-item  last first">
-                                                                @php
-                                                                    $status = app()->request->color;
-                                                                @endphp
-                                                                {{ $status }}
 																<span><label>Size</label></span>
 																<div class="last option-size">
-																	<div class="input-box">
-																		<ul class="options-list" id="options-42-list">
-                                                                            @foreach ($sizes as $key => $size)
-																			<li class="item2"><input type="radio" value="206" class="radio  product-custom-option"><span class="label"><label> {{ $size->sizes->size }} </label></span></li>
-                                                                            @endforeach
+                                                                    <div class="input-box">
+                                                                        <ul class="options-list" id="options-42-list">
+                                                                            @forelse ($sizes as $key => $size)
+																			<li class="item2"><span class="label"> {{ $size->sizes->size }} ({{ $size->quantity }})</span></li>
+                                                                            @empty
+                                                                            No Stock Available
+                                                                            @endforelse
 																		</ul>
 																	</div>
 																</div>
 															</div>
+                                                            @endif
                                                             <div class="group-item  last first">
 																<span><label>Color</label></span>
 																<div class="last option-size">
@@ -396,11 +406,16 @@
 															<span class="price">$160.00</span>                                    </span>
 														</div>
 														<div class="add-to-cart">
-															<label for="qty">Qty:</label>
-															<div class="quantity-controls quantity-minus">minus</div>
-															<input type="text" class="input-text qty" title="Qty" value="1" maxlength="12" id="qty" name="qty">
-															<div class="quantity-controls quantity-plus">plus</div>
-															<button onclick="productAddToCartForm.submit(this)" class="button btn-cart  " id="product-addtocart-button" title="Add to Cart" type="button"><span><span>Buy</span></span></button>
+														@if (!empty($status) && empty($count))
+															<button class="button btn-cart" onclick="alert('No Stock Available')"  id="product-addtocart-button" title="Add to Cart" type="button"><span><span>Buy</span></span></button>
+														@elseif (!empty($status))
+															<button class="button btn-cart"  data-toggle="modal" data-target="#placeOrder"  id="product-addtocart-button" title="Add to Cart" type="button">
+                                                                <span><span>Buy</span></span>
+                                                            </button>
+                                                            @include('models.place-order')
+                                                        @else
+															<button class="button btn-cart" onclick="alert('Please select a color to Buy')" id="product-addtocart-button" title="Add to Cart" type="button"><span><span>Buy</span></span></button>
+														@endif
 														</div>
 														<ul class="add-to-links ">
 															<li><a class="link-wishlist" onclick="productAddToCartForm.submitLight(this, this.href); return false;" href="#">Wishlist</a></li>

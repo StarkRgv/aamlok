@@ -9,13 +9,14 @@ use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Colors;
 use App\Models\Size;
-
+use App\Models\SubCategory;
 
 class ListingController extends Controller
 {
     public function openListing(Request $request){
 
         $categories = Category::get();
+        $subCategory = SubCategory::get();
     	$products = Product::where('status', 1)->get();
     	$genders = Gender::get();
     	$brands = Brand::get();
@@ -26,6 +27,7 @@ class ListingController extends Controller
                 $id = $request->category_id;
                 $products = Product::where('category_id', $id)->where('status', 1)->get();
                 return view('listing', ['categories' => $categories,
+                                        'subCategory' => $subCategory,
                                         'products' => $products,
                                         'genders' => $genders,
                                         'brands' => $brands,
@@ -37,6 +39,7 @@ class ListingController extends Controller
                 $id = $request->sub_category_id;
                 $products = Product::where('sub_category_id', $id)->where('status', 1)->get();
                 return view('listing', ['categories' => $categories,
+                                        'subCategory' => $subCategory,
                                         'products' => $products,
                                         'genders' => $genders,
                                         'brands' => $brands,
@@ -48,6 +51,7 @@ class ListingController extends Controller
                 $id = $request->brand_id;
                 $products = Product::where('brand_name', $id)->where('status', 1)->get();
                 return view('listing', ['categories' => $categories,
+                                        'subCategory' => $subCategory,
                                         'products' => $products,
                                         'genders' => $genders,
                                         'brands' => $brands,
@@ -57,6 +61,7 @@ class ListingController extends Controller
             }
 
         return view('listing', ['categories' => $categories,
+                                    'subCategory' => $subCategory,
                                      'products' => $products,
                                      'genders' => $genders,
                                      'brands' => $brands,
