@@ -19,6 +19,13 @@
 	<link rel="stylesheet" type="text/css" href="css/responsive.css" media="all"/>
 </head>
 <body>
+@if (session()->has('success'))
+    @component('components.notify-msg', ['class' => 'bg-success'])
+      @slot('message')
+        {{ session('success') }}
+      @endslot
+    @endcomponent
+@endif
 	<div class="wrap">
 		<div id="header">
 			<div class="header">
@@ -1416,6 +1423,12 @@
 			</div>
 		</div>
 		<!-- End Footer -->
+        <script src="{{ asset('seller/js/jquery-3.3.1.min.js') }}"></script>
+        <script>
+        $(".notification").animate({right: '40px'});
+                setTimeout(function(){
+                $('.notification').slideUp(1000)}, 2500);
+        </script>
 		<script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/jquery.fancybox.js"></script>

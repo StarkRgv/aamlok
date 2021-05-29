@@ -24,16 +24,15 @@ class WishlistController extends Controller
         $count = $wishlist->count();
         // return $count;
         if ($count == 0) {
-            # code...
             $wishlist = Wishlist::create([
                 'product_id' => $product_id,
                 'user_id' => $user_id,
                 ]);
-                return redirect()->back();
+            return redirect()->back()->with('success', 'Added to Wishlist Successfullly');
         } else{
             $wishlist = Wishlist::where('product_id', $product_id)->where('user_id', $user_id)->first();
             $wishlist->delete();
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Removed from Wishlist Successfullly');
         }
         return redirect()->back();
     }

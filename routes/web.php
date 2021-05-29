@@ -77,7 +77,7 @@ Route::middleware(['user'])->group(function () {
 
     // CartController
     Route::get('/fill/cart/{product?}', [App\Http\Controllers\CartController::class, 'fillCart'])->name('fill.cart');
-    Route::get('/unfill/cart/{product?}', [App\Http\Controllers\CartController::class, 'unFillCart'])->name('unfill.cart');
+    Route::get('/unfill/cart/{product?}', [App\Http\Controllers\CartController::class, 'unfillCart'])->name('unfill.cart');
 
     // WishlistController
     Route::get('/fill/wish/{product?}', [App\Http\Controllers\WishlistController::class, 'fillWish'])->name('fill.wish');
@@ -85,6 +85,9 @@ Route::middleware(['user'])->group(function () {
     // UserController
     Route::get('/your-cart', [App\Http\Controllers\UserController::class, 'yourCart'])->name('your.cart');
     Route::get('/your-wishlist', [App\Http\Controllers\UserController::class, 'yourWishlist'])->name('your.wishlist');
+
+    // Order
+    Route::post('/create-order', [App\Http\Controllers\OrderController::class, 'createOrder'])->name('create.order');
 
 });
 
