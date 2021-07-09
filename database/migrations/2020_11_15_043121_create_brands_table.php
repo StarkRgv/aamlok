@@ -16,7 +16,12 @@ class CreateBrandsTable extends Migration
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
             $table->string('brand')->nullable();
+            $table->unsignedBigInteger('gender_id');
+            $table->text('brand_image')->nullable();
             $table->timestamps();
+
+            $table->foreign('gender_id')->references('id')->on('genders');
+
         });
     }
 

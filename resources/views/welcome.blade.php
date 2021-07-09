@@ -643,27 +643,13 @@
 										<div class="brand-cat-slider five-item">
 											<div class="vertical-slider">
 												<ul>
+													@foreach ($brands->where('gender_id', 1) as $brand)
+														
 													<li>
-														<a href="#"><img src="images/home_3/lg1.jpg" alt="" /></a>
+														<a href="{{ route('listing', ['brand_name' => $brand->id]) }}"><img src="{{ url('../storage/app/public/'.$brand->brand_image) }}" alt="" /></a>
 													</li>
-													<li>
-														<a href="#"><img src="images/home_3/lg2.jpg" alt="" /></a>
-													</li>
-													<li>
-														<a href="#"><img src="images/home_3/lg3.jpg" alt="" /></a>
-													</li>
-													<li>
-														<a href="#"><img src="images/home_3/lg4.jpg" alt="" /></a>
-													</li>
-													<li>
-														<a href="#"><img src="images/home_3/lg5.jpg" alt="" /></a>
-													</li>
-													<li>
-														<a href="#"><img src="images/home_3/brand-01.jpg" alt="" /></a>
-													</li>
-													<li>
-														<a href="#"><img src="images/home_3/brand-04.jpg" alt="" /></a>
-													</li>
+
+													@endforeach
 												</ul>
 											</div>
 											<div class="jcaroul-control-nav">
@@ -931,27 +917,13 @@
 										<div class="brand-cat-slider four-item">
 											<div class="vertical-slider">
 												<ul>
+													@foreach ($brands->where('gender_id', 2) as $brand)
+														
 													<li>
-														<a href="#"><img src="images/home_3/cate-women.png" alt="" /></a>
+														<a href="{{ route('listing', ['brand_name' => $brand->id]) }}"><img src="{{ url('../storage/app/public/'.$brand->brand_image) }}" alt="" /></a>
 													</li>
-													<li>
-														<a href="#"><img src="images/home_3/hat.png" alt="" /></a>
-													</li>
-													<li>
-														<a href="#"><img src="images/home_3/short.png" alt="" /></a>
-													</li>
-													<li>
-														<a href="#"><img src="images/home_3/shoes.png" alt="" /></a>
-													</li>
-													<li>
-														<a href="#"><img src="images/home_3/cate-women.png" alt="" /></a>
-													</li>
-													<li>
-														<a href="#"><img src="images/home_3/hat.png" alt="" /></a>
-													</li>
-													<li>
-														<a href="#"><img src="images/home_3/short.png" alt="" /></a>
-													</li>
+
+													@endforeach
 												</ul>
 											</div>
 											<div class="jcaroul-control-nav">

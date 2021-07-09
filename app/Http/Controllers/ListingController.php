@@ -10,6 +10,7 @@ use App\Models\Brand;
 use App\Models\Colors;
 use App\Models\Size;
 use App\Models\SubCategory;
+use Illuminate\Support\Collection;
 
 class ListingController extends Controller
 {
@@ -17,48 +18,11 @@ class ListingController extends Controller
 
         $categories = Category::get();
         $subCategory = SubCategory::get();
-    	$products = Product::where('status', 1)->get();
+    	$products = Product::searchable();
     	$genders = Gender::get();
     	$brands = Brand::get();
     	$colors = Colors::get();
     	$sizes = Size::get();
-
-            if ($request->has('category_id')) {
-                $id = $request->category_id;
-                $products = Product::where('category_id', $id)->where('status', 1)->get();
-                return view('listing', ['categories' => $categories,
-                                        'subCategory' => $subCategory,
-                                        'products' => $products,
-                                        'genders' => $genders,
-                                        'brands' => $brands,
-                                        'colors' => $colors,
-                                        'sizes' => $sizes
-                                        ]);
-            }
-            if ($request->has('sub_category_id')) {
-                $id = $request->sub_category_id;
-                $products = Product::where('sub_category_id', $id)->where('status', 1)->get();
-                return view('listing', ['categories' => $categories,
-                                        'subCategory' => $subCategory,
-                                        'products' => $products,
-                                        'genders' => $genders,
-                                        'brands' => $brands,
-                                        'colors' => $colors,
-                                        'sizes' => $sizes
-                                        ]);
-            }
-            if ($request->has('brand_id')) {
-                $id = $request->brand_id;
-                $products = Product::where('brand_name', $id)->where('status', 1)->get();
-                return view('listing', ['categories' => $categories,
-                                        'subCategory' => $subCategory,
-                                        'products' => $products,
-                                        'genders' => $genders,
-                                        'brands' => $brands,
-                                        'colors' => $colors,
-                                        'sizes' => $sizes
-                                        ]);
-            }
 
         return view('listing', ['categories' => $categories,
                                     'subCategory' => $subCategory,
@@ -69,4 +33,18 @@ class ListingController extends Controller
                                      'sizes' => $sizes
                                     ]);
     }
+
+    protected function filterData(Collection $collection)
+      {
+        foreach(request()->query() as $query => $value)
+        {
+            // $attribute = $transformer::originalAttribute($query);
+
+            if(isset($query, $value))
+            {
+                $collection = $collection->where($query, $value);
+            }
+        }
+        return $collection;
+      }
 }

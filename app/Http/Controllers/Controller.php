@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Brand;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -19,6 +20,7 @@ class Controller extends BaseController
     public function index()
     {
         $category = Category::get();
+        $brands = Brand::get();
         $subCategory = SubCategory::get();
         $newProduct = Product::where('status', 1)->latest()->take(10)->get();
         $user = Auth::User();
@@ -26,6 +28,7 @@ class Controller extends BaseController
             $cartProduct = $user->products()->get();
         }
         return view('welcome', ['category' => $category,
+                                'brands' => $brands,
                                 'subCategory' => $subCategory,
                                 'newProduct' => $newProduct,
                                 'cartProduct' => $cartProduct ?? null]);

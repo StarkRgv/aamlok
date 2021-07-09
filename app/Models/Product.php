@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Searchable\ProductSearchable;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, ProductSearchable;
 
     public function images()
 {
@@ -27,6 +28,11 @@ class Product extends Model
 public function genders()
 {
     return $this->belongsTo(Gender::class, 'gender_id', 'id');
+}
+
+public function brands()
+{
+    return $this->belongsTo(Brand::class, 'brand_name', 'id');
 }
 
    public function getImageAttribute()
