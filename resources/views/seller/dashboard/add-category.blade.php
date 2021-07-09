@@ -53,27 +53,27 @@
                                         <form class="needs-validation" action="{{ route('category.store') }}" method="POST">
                                             @csrf
                                         <div class="form">
-                                        <div class="form-group">
-                                            <label for="validationCustom01" class="mb-1">Category Name :</label>
-                                            <input class="form-control @error('category') is-invalid @enderror" id="validationCustom01" type="text" name="category" value="" >
-                                            @error('category')
-                                                <div class="text-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
                                             <div class="form-group">
-                                            <label for="category_id">Select Gander :</label>
-                                            <select class="form-control @error('gender') is-invalid @enderror" id="category_id" name="gender">
-                                                @foreach($genders as $gender)
-                                                <option value="{{ $gender->id }}">{{ $gender->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('gender')
-                                                <div class="text-danger">{{ $message }}</div>
-                                            @enderror
+                                                <label for="validationCustom01" class="mb-1">Category Name :</label>
+                                                <input class="form-control @error('category') is-invalid @enderror" id="validationCustom01" type="text" name="category" value="" >
+                                                @error('category')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                <label for="category_id">Select Gender :</label>
+                                                <select class="form-control @error('gender') is-invalid @enderror" id="category_id" name="gender">
+                                                    @foreach($genders as $gender)
+                                                    <option value="{{ $gender->id }}">{{ $gender->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('gender')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                                </div>
                                             </div>
                                         </div>
-                                            </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-primary" type="submit">Save</button>

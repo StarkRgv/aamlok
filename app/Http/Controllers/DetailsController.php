@@ -16,7 +16,7 @@ class DetailsController extends Controller
     public function openDetails(Request $request, Product $product){
         // return app()->request;
         $stockCount = ProductVariation::where('product_id', $product->id)->where('status', 1)->sum('quantity');
-        $colors = ProductVariation::where('product_id', $product->id)->where('status', 1)->distinct()->get(['color']);
+        $colors = ProductVariation::where('product_id', $product->id)->where('status', 1)->where('quantity', '!=', 0)->distinct()->get(['color']);
         $imageId = ProductVariationImages::where('product_id', $product->id)->distinct()->first();
     	$rawColor = Colors::get();
 

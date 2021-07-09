@@ -220,7 +220,7 @@
 									<dd class="cust-scroll">
 										<ol>
 											@forelse ($brands as $brand)
-											<li><a href="{{ route('listing', ['brand_id' => $brand->id]) }}">{{ $brand->brand }}</a></li>
+											<li><a href="{{ route('listing', ['brand_name' => $brand->id]) }}">{{ $brand->brand }}</a></li>
 											@empty
                                             <li><h4>No Data Found</h4></li>
                                             @endforelse
@@ -328,11 +328,7 @@
 										<span>|</span>
 									</li>
 									<li>
-										<a href="grid.html">Category</a>
-										<span>|</span>
-									</li>
-									<li class="category4">
-										<strong>Beauty &amp; Perfumes</strong>
+										<a href="{{ route('listing') }}">Listing</a>
 									</li>
 								</ul>
 							</div>
@@ -364,10 +360,8 @@
 										<div class="box-top col-lg-12 col-md-12 col-sm-12 col-xs-12">
 											<div class="sort-by col-lg-8 col-md-8 col-sm-8 col-xs-8">
 												<ul class="select-order">
-													<li><a href="#auto-accessories.html?dir=asc&amp;order=position" class="selected">Position</a></li>
-													<li><a href="#auto-accessories.html?dir=asc&amp;order=name">Name</a></li>
 													<li><a href="#auto-accessories.html?dir=asc&amp;order=price">Price</a></li>
-													<li><a class="desc" href="#auto-accessories.html?dir=desc&amp;order=position" title="Set Descending Direction"></a></li>
+													<li><a class="" href="{{ route('listing', ['sort_up']) }}"><i class="fas fa-sort-alpha-down"></i></a></li><li><a class="" href="{{ route('listing', ['sort_down']) }}"><i class="fas fa-sort-alpha-up"></i></a></li>
 												</ul>
 											</div>
 											{{-- <div class="view-mode col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -384,7 +378,7 @@
 												</div>
 											</div> --}}
 										</div>
-										<div class="box-bottom col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										{{-- <div class="box-bottom col-lg-12 col-md-12 col-sm-12 col-xs-12">
 											<div class="limiter col-lg-3 col-md-3 col-sm-3 col-xs-6">
 												<div class="limiter-inner">
 													<span>Show</span>
@@ -424,7 +418,7 @@
 													</form>
 												</div>
 											</div>
-										</div>
+										</div> --}}
 									</div>
 								</div>
 								<ul class="products-grid">
@@ -490,7 +484,7 @@
                                     @endforelse
 								</ul>
 								<div class="toolbar-bottom">
-									<div class="toolbar col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									{{-- <div class="toolbar col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<div class="box-top col-lg-12 col-md-12 col-sm-12 col-xs-12">
 											<div class="sort-by col-lg-8 col-md-8 col-sm-8 col-xs-8">
 												<ul class="select-order">
@@ -499,7 +493,7 @@
 													<li><a href="#auto-accessories.html?dir=asc&amp;order=price">Price</a></li>
 													<li><a class="desc" href="#auto-accessories.html?dir=desc&amp;order=position" title="Set Descending Direction"></a></li>
 												</ul>
-											</div>
+											</div> --}}
 											{{-- <div class="view-mode col-lg-4 col-md-4 col-sm-4 col-xs-4">
 												<div class="inner">
 													<label>View as</label>
@@ -514,9 +508,9 @@
 												</div>
 											</div> --}}
 										</div>
-										<div class="box-bottom col-lg-12 col-md-12 col-sm-12 col-xs-12">
-											<div class="limiter col-lg-3 col-md-3 col-sm-3 col-xs-6">
-												<div class="limiter-inner">
+										{{-- <div class="box-bottom col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="limiter col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                                <div class="limiter-inner">
 													<span>Show</span>
 													<div class="wrap-show">
 														<div class="selected-limiter">12</div>
@@ -529,33 +523,35 @@
 													<label class="stylepp">per page</label>
 												</div>
 											</div>
+                                            <input type="text" name="text" value="10">
 											<div class="pager col-lg-6 col-md-6 col-sm-5 col-xs-6">
 												<p class="amount">
 													Items 1 to 12 of 16 total
 												</p>
 												<div class="pages">
-													<strong>Pages</strong>
+                                                    <strong>Pages</strong>
 													<ol>
-														<li class="current">1</li>
+                                                        <li class="current">1</li>
 														<li><a href="#auto-accessories.html?p=2">2</a></li>
 														<li>
-															<a class="next i-next" href="#auto-accessories.html?p=2" title="Next">Next</a>
+                                                            <a class="next i-next" href="#auto-accessories.html?p=2" title="Next">Next</a>
 														</li>
 													</ol>
 												</div>
 											</div>
 											<!--end pages-->
 											<div class="go-to-page col-lg-3 col-md-3 col-sm-4 col-xs-12">
-												<div class="inner">
-													<label>Go to page:</label>
+                                                <div class="inner">
+                                                    <label>Go to page:</label>
 													<form action="#">
-														<input type="text" id="gotopage" name="p" value="1">
+                                                        <input type="text" id="gotopage" name="p" value="1">
 														<input type="submit" class="button" id="btnpage" value="Go" name="subpage">
 													</form>
 												</div>
 											</div>
-										</div>
+										</div> --}}
 									</div>
+                                    {{ $products->links() }}
 								</div>
 								{{-- div class="block-buyer-protec col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="inner">
@@ -666,6 +662,7 @@
             $('.notification').slideUp(1000)}, 2500);
     </script>
 	{{-- <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script> --}}
+	<script src="https://kit.fontawesome.com/7ca433db62.js" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/owl.carousel.js"></script>
 	<script type="text/javascript" src="js/theme.js"></script>

@@ -20,6 +20,7 @@ class OrderController extends Controller
 
     public function createOrder(Request $request)
     {
+        return $request;
         $data = new Order;
         $data->user_id = Auth::User()->id;
         $data->product_id = $request->product_id;

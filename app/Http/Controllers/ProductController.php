@@ -50,31 +50,24 @@ class ProductController extends Controller
     {
         $validatedData = $request->validate([
         'title' => 'required',
+        'category_id' => 'required',
+        'sub_category_id' => 'required',
+        'gender_id' => 'required',
         'brand_name' => 'required',
         'style_name' => 'required',
-        'department' => 'required',
         'pattern' => 'required',
-        'rise_style' => 'required',
-        'fitting_type' => 'required',
         'origin_country' => 'required',
         'mrp' => 'required',
         'selling_price' => 'required',
-        'order_quantity' => 'required',
-        'pocket_count' => 'required',
-        'unit_count' => 'required',
         'manufacturer' => 'required',
-        'care_instructions' => 'required',
-        'occasion_instructions' => 'required',
-        'material_composition' => 'required',
-        'item_length_desc' => 'required',
         'product_desc' => 'required',
-        'key_feature' => 'required',
+        'primary_image' => 'required',
+
         ]);
 
-        // if($validatedData->fails()) {
-        //     return Redirect::back()->withErrors($validatedData);
-        // }
-        // else {
+        if($validatedData->fails()) {
+            return Redirect::back()->withErrors($validatedData);
+        }
 
             if($request->file()) {
                 $image = $request->primary_image;
@@ -111,10 +104,7 @@ class ProductController extends Controller
             $data->primary_image = $imagePath;
             $data->save();
 
-
-
             return redirect()->route('product.variation', ['product' => $data->id ]);
-        // }
 
     }
 
@@ -133,29 +123,30 @@ class ProductController extends Controller
 
     public function updateProduct(Request $request, Product $product)
     {
-        // return $product;
         $validatedData = $request->validate([
-            'title' => 'required',
-            'brand_name' => 'required',
-            'style_name' => 'required',
-            'department' => 'required',
-            'pattern' => 'required',
-            'rise_style' => 'required',
-            'fitting_type' => 'required',
-            'origin_country' => 'required',
-            'mrp' => 'required',
-            'selling_price' => 'required',
-            'order_quantity' => 'required',
-            'pocket_count' => 'required',
-            'unit_count' => 'required',
-            'manufacturer' => 'required',
-            'care_instructions' => 'required',
-            'occasion_instructions' => 'required',
-            'material_composition' => 'required',
-            'item_length_desc' => 'required',
-            'product_desc' => 'required',
-            'key_feature' => 'required',
-            ]);
+        'title' => 'required',
+        'category_id' => 'required',
+        'sub_category_id' => 'required',
+        'gender_id' => 'required',
+        'brand_name' => 'required',
+        'style_name' => 'required',
+        'pattern' => 'required',
+        'origin_country' => 'required',
+        'mrp' => 'required',
+        'selling_price' => 'required',
+        'manufacturer' => 'required',
+        'product_desc' => 'required',
+        ]);
+
+        if($validatedData->fails()) {
+            return Redirect::back()->withErrors($validatedData);
+        }
+
+            if($request->file()) {
+                $image = $request->primary_image;
+                $imageName = $image->getClientOriginalName();
+                $imagePath = $image->store('primary', 'public');
+            }
 
         $data = Product::findOrFail($product->id);
 
@@ -184,7 +175,7 @@ class ProductController extends Controller
         $data->item_length_desc = $request->item_length_desc;
         $data->product_desc = $request->product_desc;
         $data->key_feature = $request->key_feature;
-        // $data->primary_image = $imagePath;
+        $data->primary_image = $imagePath;
         $data->save();
 
         return redirect()->back()->with('success', 'Product Updated Successfullly');

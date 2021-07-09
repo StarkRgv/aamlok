@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Gender;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -25,7 +26,8 @@ class BrandController extends Controller
     public function index()
     {
         $brands = Brand::get();
-        return view('seller.dashboard.add-brand', ['brands' => $brands]);
+        $genders = Gender::get();
+        return view('seller.dashboard.add-brand', ['brands' => $brands, 'genders' => $genders]);
     }
 
     /**
@@ -46,12 +48,22 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $validatedData = $request->validate([
             'brand' => 'required|max:255',
+            'brand_image' => 'required',
             ]);
+
+            if($request->file()) {
+                $image = $request->brand_image;
+                $imageName = $image->getClientOriginalName();
+                $imagePath = $image->store('/brand', 'public');
+            }
 
             $data = new Brand;
             $data->brand = $request->brand;
+            $data->gender_id = $request->gender;
+            $data->brand_image = $imagePath;
             $data->save();
 
             return redirect()->back()->with('success', 'Brand Added Successfullly');
@@ -92,9 +104,19 @@ class BrandController extends Controller
             'brand' => 'required|max:255',
             ]);
 
+        if($request->file()) {
+                $image = $request->brand_image;
+                $imageName = $image->getClientOriginalName();
+                $imagePath = $image->store('brand', 'public');
+            }
+
         $data = Brand::findOrFail($brand->id);
 
         $data->brand = $request->brand;
+        $data->gender_id = $request->gender;
+        if($request->file()) {
+            $data->brand_image = $imagePath;
+        }
         $data->save();
 
         return redirect()->back()->with('success', 'Brand Updated Successfullly');

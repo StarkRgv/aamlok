@@ -41,7 +41,7 @@
                 </div>
                 <div class="card-body">
                     <div class="btn-popup pull-right">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test" data-target="#brandModal">Brand<i class="fa fa-plus" aria-hidden="true"></i></button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test" data-target="#brandModal">Brand <i class="fa fa-plus" aria-hidden="true"></i></button>
                         <div class="modal fade" id="brandModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -50,7 +50,7 @@
                                         <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="needs-validation" action="{{ route('brand.store') }}" method="POST">
+                                        <form class="needs-validation" action="{{ route('brand.store') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                         <div class="form">
                                             <div class="form-group">
@@ -60,6 +60,28 @@
                                                     <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
+
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                <label for="category_id">Select Gender :</label>
+                                                <select class="form-control @error('gender') is-invalid @enderror" id="category_id" name="gender">
+                                                    @foreach($genders as $gender)
+                                                    <option value="{{ $gender->id }}">{{ $gender->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('gender')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="mb-1" for="inputGroupFile02">Primary Image</label>
+                                                <input type="file" class="form-control @error('brand_image') is-invalid @enderror" id="inputGroupFile02" name="brand_image">
+                                            </div>
+                                            @error('brand_image')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -79,6 +101,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Brand</th>
+                            <th scope="col">Gender</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                         </tr>
@@ -88,6 +111,9 @@
                         <tr>
                             <th scope="row">{{ $key + 1 }}</th>
                             <td>{{ $brand->brand }}</td>
+                            {{-- <td></td> --}}
+                            <td>{{ $brand->genders->name }}</td>
+
                             <td>
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test" data-target="#editModal_{{ $brand->id }}">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -111,7 +137,7 @@
                                         <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="needs-validation" action="{{ route('brand.update', ['brand' => $brand]) }}" method="POST">
+                                        <form class="needs-validation" action="{{ route('brand.update', ['brand' => $brand]) }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <input type="hidden" name="_method" value="PUT">
                                         <div class="form">
@@ -119,6 +145,27 @@
                                                 <label for="validationCustom01" class="mb-1">Brand Name :</label>
                                                 <input class="form-control @error('brand') is-invalid @enderror" id="validationCustom01" type="text" name="brand" value="{{ $brand->brand }}" >
                                                 @error('brand')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                <label for="category_id">Select Gender :</label>
+                                                <select class="form-control @error('gender') is-invalid @enderror" id="category_id" name="gender">
+                                                    @foreach($genders as $gender)
+                                                    <option {{ $brand->gender_id === $gender->id? 'selected' : '' }} value="{{ $gender->id }}">{{ $gender->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('gender')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="mb-1" for="inputGroupFile02">Primary Image</label>
+                                                <input type="file" class="form-control @error('brand_image') is-invalid @enderror" id="inputGroupFile02" name="brand_image">
+                                                @error('brand_image')
                                                     <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
