@@ -232,6 +232,65 @@
                 <textarea id="" class="form-control" name="key_feature" cols="92" rows="4">{{ $product->key_feature }}</textarea>
             </div>
         </div>
+        <div class="form-group row">
+        <label class="col-xl-3 col-sm-4">Best Sellers :</label>
+            <div class="form-check form-check-inline">
+              <input {{ $product->best_seller === 1 ? 'checked' : '' }} class="form-check-input" type="radio" name="best_seller" id="inlineRadio1" value="1">
+              <label class="form-check-label" for="inlineRadio1">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input {{ $product->best_seller === 0 ? 'checked' : '' }} class="form-check-input" type="radio" name="best_seller" id="inlineRadio2" value="0">
+              <label class="form-check-label" for="inlineRadio2">No</label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+        <label class="col-xl-3 col-sm-4">New Arrivals :</label>
+            <div class="form-check form-check-inline">
+              <input {{ $product->new_arrivals === 1 ? 'checked' : '' }} class="form-check-input" type="radio" name="new_arrivals" id="inlineRadio1" value="1">
+              <label class="form-check-label" for="inlineRadio1">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input {{ $product->new_arrivals === 0 ? 'checked' : '' }} class="form-check-input" type="radio" name="new_arrivals" id="inlineRadio2" value="0">
+              <label class="form-check-label" for="inlineRadio2">No</label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+        <label class="col-xl-3 col-sm-4">Deals of the Day :</label>
+            <div class="form-check form-check-inline">
+              <input {{ $product->deals === 1 ? 'checked' : '' }} class="form-check-input" type="radio" name="deals" id="inlineRadio1" value="1">
+              <label class="form-check-label" for="inlineRadio1">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input {{ $product->deals === 0 ? 'checked' : '' }} class="form-check-input" type="radio" name="deals" id="inlineRadio2" value="0">
+              <label class="form-check-label" for="inlineRadio2">No</label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+        <label class="col-xl-3 col-sm-4">Men Feature :</label>
+            <div class="form-check form-check-inline">
+              <input {{ $product->men_feature === 1 ? 'checked' : '' }} class="form-check-input" type="radio" name="men_feature" id="inlineRadio1" value="1">
+              <label class="form-check-label" for="inlineRadio1">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input {{ $product->men_feature === 0 ? 'checked' : '' }} class="form-check-input" type="radio" name="men_feature" id="inlineRadio2" value="0">
+              <label class="form-check-label" for="inlineRadio2">No</label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+        <label class="col-xl-3 col-sm-4">Women Feature :</label>
+            <div class="form-check form-check-inline">
+              <input {{ $product->women_feature === 1 ? 'checked' : '' }} class="form-check-input" type="radio" name="women_feature" id="inlineRadio1" value="1">
+              <label class="form-check-label" for="inlineRadio1">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input {{ $product->women_feature === 0 ? 'checked' : '' }} class="form-check-input" type="radio" name="women_feature" id="inlineRadio2" value="0">
+              <label class="form-check-label" for="inlineRadio2">No</label>
+            </div>
+        </div>
     </div>
     <div class="offset-xl-3 offset-sm-4">
         <button type="submit" class="btn btn-primary">Next</button>

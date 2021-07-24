@@ -47,4 +47,37 @@ class DashboardController extends Controller
           'wish_count' => $wish_count
           ]);
     }
+
+    public function bestSellers($value='')
+    {
+        $products = Product::where('best_seller', 1)->where('status', 1)->get();
+        return view('seller.dashboard.best-sellers', ['products' =>$products]);
+    }
+
+    public function newArrivals($value='')
+    {
+        $products = Product::where('new_arrivals', 1)->where('status', 1)->get();
+        return view('seller.dashboard.new-arrivals', ['products' =>$products]);
+
+    }
+
+    public function deals($value='')
+    {
+        $products = Product::where('deals', 1)->where('status', 1)->get();
+        return view('seller.dashboard.deals', ['products' =>$products]);
+
+    }
+
+    public function menFeature($value='')
+    {
+        $products = Product::where('men_feature', 1)->where('status', 1)->get();
+        return view('seller.dashboard.men-feature', ['products' =>$products]);
+    }
+
+    public function womenFeature($value='')
+    {
+        $products = Product::where('women_feature', 1)->where('status', 1)->get();
+        return view('seller.dashboard.women-feature', ['products' =>$products]);
+
+    }
 }

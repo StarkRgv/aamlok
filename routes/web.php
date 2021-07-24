@@ -71,6 +71,24 @@ Route::middleware(['admin'])->group(function () {
 
     // Size
     Route::resource('size', 'App\Http\Controllers\SizeController', ['only' => [ 'index', 'store', 'update' ,'destroy']]);
+
+    // Banner
+    Route::resource('banner', 'App\Http\Controllers\BannerController', ['only' => [ 'index', 'store' ,'destroy']]);
+
+    // BestSeller
+    Route::get('/best-sellers', [App\Http\Controllers\DashboardController::class, 'bestSellers'])->name('best.seller');
+
+    // New Arrivals
+    Route::get('/new-arrivals', [App\Http\Controllers\DashboardController::class, 'newArrivals'])->name('new.arrivals');
+
+    // Deals
+    Route::get('/deals', [App\Http\Controllers\DashboardController::class, 'deals'])->name('deals');
+
+    // Men Feature
+    Route::get('/men-feature', [App\Http\Controllers\DashboardController::class, 'menFeature'])->name('men.feature');
+
+    // Women Feature
+    Route::get('/women-feature', [App\Http\Controllers\DashboardController::class, 'womenFeature'])->name('women.feature');
 });
 
 Route::middleware(['user'])->group(function () {
