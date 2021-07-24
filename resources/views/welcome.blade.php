@@ -40,7 +40,7 @@
 							<div class="row">
 								<div class="col-md-12 col-sm-12 col-xs-2">
 									<nav class="main-nav main-nav3">
-										<ul class="list-inline">
+										<ul class="list-inline text-right">
 											{{-- <li class="menu-item-has-children">
 												<a href="#" class="active">Home</a>
 												<ul class="sub-menu">
@@ -269,7 +269,7 @@
 										<a href="#" class="btn-mobile-menu"></a>
 									</nav>
 								</div>
-								<div class="col-md-3 col-sm-3 col-xs-10">
+								{{-- <div class="col-md-3 col-sm-3 col-xs-10">
 									<div class="header-info-box">
 										<img src="images/home_3/icon-free-ship.png" alt="" />
 										<span>Free shipping</span>
@@ -280,9 +280,9 @@
 										<img src="images/home_3/icon-phone.png" alt="" />
 										<span>Call Us: (009) 66 55 819 - 080 566 996</span>
 									</div>
-								</div>
+								</div> --}}
                                 @if (auth()->user())
-								<div class="col-md-3 col-sm-3 col-xs-6">
+								<div class="col-md-12 col-sm-12 col-xs-12">
 									<div class="shop-cart-box block-cart box">
 										<a href="#">
 											<img src="images/home_3/icon-cart.png" alt="" />
@@ -379,7 +379,7 @@
 							</div>
 						</div>
 						<!-- End Category Dropdown -->
-						<div class="col-md-3 col-sm-6 col-xs-12">
+						{{-- <div class="col-md-3 col-sm-6 col-xs-12">
 							<div class="deals-off">
 								<h2 class="deals-title">DeALS OF THE DAY</h2>
 								<div class="deals-off-content">
@@ -458,7 +458,7 @@
 								</div>
 							</div>
 							<!-- End Deals Off -->
-						</div>
+						</div> --}}
 					</div>
 				</div>
 			</div>
@@ -468,34 +468,12 @@
 		<div id="content">
 			<div class="banner-advert">
 				<div class="wrap-item">
+					@foreach ($banners as $banner)	
 					<div class="item">
-						<div class="container">
-							<div class="content-banner-advert">
-								<div class="advert-image">
-									<img src="images/home_3/girl-smile.jpg" alt="" />
-								</div>
-								<div class="advert-text">
-									<span>M & C Fashion</span>
-									<h2><span>Up to</span> <strong>40% off</strong></h2>
-									<a href="#" class="shop-now">Shop now</a>
-								</div>
-							</div>
-						</div>
+						<img src="{{ url('../storage/app/public/'.$banner->file_path) }}" alt="" />
 					</div>
-					<div class="item">
-						<div class="container">
-							<div class="content-banner-advert">
-								<div class="advert-image">
-									<img src="images/home_3/girl-smile2.png" alt="" />
-								</div>
-								<div class="advert-text">
-									<span class="up-to">A &amp; B Fashion</span>
-									<h2><span class="up-to">Up to</span> <strong>60% off</strong></h2>
-									<a href="#" class="shop-now">Shop now</a>
-								</div>
-							</div>
-						</div>
-					</div>
+					@endforeach
+
 				</div>
 			</div>
 			<!-- End Banner Advert -->
@@ -504,44 +482,26 @@
 					<div class="title-tab-slider">
 						<ul role="tablist" class="nav nav-tabs">
 							<li class="active" role="presentation"><a data-toggle="tab" role="tab" aria-controls="bestsale" href="#bestsale">best sellers</a></li>
-							{{-- <li role="presentation"><a data-toggle ="tab" role="tab" aria-controls="newarrival" href="#newarrival">New arrivals</a></li> --}}
-							{{-- <li  role="presentation"><a data-toggle="tab" role="tab" aria-controls="featured" href="#featured">Featured</a></li> --}}
+							<li role="presentation"><a data-toggle ="tab" role="tab" aria-controls="newarrival" href="#newarrival">New arrivals</a></li>
+							<li  role="presentation"><a data-toggle="tab" role="tab" aria-controls="featured" href="#featured">Deals of the day</a></li>
 						</ul>
 					</div>
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane active" id="bestsale">
 							<div class="content-tab-product single-arrow">
 								<div class="wrap-item">
-                                    @foreach ($newProduct as $product)
+                                    @foreach ($newProduct->where('best_seller', 1) as $product)
 									<div class="item">
                                         <div class="item-product product-lower">
+                                        	<a href="{{ route('details', ['product' => $product]) }}">
                                             <div class="item-product-thumb item-thumb-product">
-                                                <a href="{{ route('details', ['product' => $product]) }}"><img style="height: 25rem" alt="" src="{{ url('../storage/app/public/'.$product->primary_image) }}"></a>
-												<div class="info-product-cart">
-                                                    <div class="inner-info-product-cart">
-														<ul>
-															<li><a href="{{ route('fill.wish', ['product' => $product]) }}" class="link-wishlist"><i class="fa fa-heart"></i></a></li>
-															<li><a href="#" class="link-quick-view"><i class="fa fa-search"></i></a></li>
-															<li><a href="#" class="link-compare"><i class="fa fa-external-link-square"></i></a></li>
-														</ul>
-														<a href="{{ route('fill.cart', ['product' => $product ]) }}" class="link-product-add-cart">Add to cart</a>
-													</div>
-												</div>
+                                                <img style="height: 25rem" alt="" src="{{ url('../storage/app/public/'.$product->primary_image) }}">
 											</div>
+											</a>
 											<div class="item-product-info">
-												<h3 class="title-product"><a href="{{ route('details', ['product' => $product]) }}">{{ $product->title }}</a></h3>
+												<h4 class="title-product">{{ $product->title }}</h4>
 												<div class="info-product-price">
 													<span>₹ {{ $product->selling_price }}</span> <del>₹ {{ $product->mrp }}</del>
-												</div>
-												<div class="info-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-o"></i>
-													<i class="fa fa-star-o"></i>
-													<i class="fa fa-star-o"></i>
-													<i class="fa fa-star-o"></i>
-												</div>
-												<div class="order-number">
-													<span>15 order</span>
 												</div>
 											</div>
 										</div>
@@ -553,78 +513,46 @@
 						<div role="tabpanel" class="tab-pane" id="newarrival">
 							<div class="content-tab-product single-arrow">
 								<div class="wrap-item">
+                                    @foreach ($newProduct->where('new_arrivals', 1) as $product)
 									<div class="item">
-										<div class="item-product product-lower">
-											<div class="item-product-thumb item-thumb-product">
-												<a href="#"><img alt="" src="images/home_3/tab5.png"></a>
-												<div class="info-product-cart">
-													<div class="inner-info-product-cart">
-														<ul>
-															<li><a href="#" class="link-wishlist"><i class="fa fa-heart"></i></a></li>
-															<li><a href="#" class="link-quick-view"><i class="fa fa-search"></i></a></li>
-															<li><a href="#" class="link-compare"><i class="fa fa-external-link-square"></i></a></li>
-														</ul>
-														<a href="#" class="link-product-add-cart">Add to cart</a>
-													</div>
-												</div>
+                                        <div class="item-product product-lower">
+                                        	<a href="{{ route('details', ['product' => $product]) }}">
+                                            <div class="item-product-thumb item-thumb-product">
+                                                <img style="height: 25rem" alt="" src="{{ url('../storage/app/public/'.$product->primary_image) }}">
 											</div>
+											</a>
 											<div class="item-product-info">
-												<h3 class="title-product"><a href="#">Chemise SLimFon</a></h3>
+												<h4 class="title-product">{{ $product->title }}</h4>
 												<div class="info-product-price">
-													<span>$45.99</span> <del>$69.71</del>
-												</div>
-												<div class="info-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-o"></i>
-													<i class="fa fa-star-o"></i>
-													<i class="fa fa-star-o"></i>
-													<i class="fa fa-star-o"></i>
-												</div>
-												<div class="order-number">
-													<span>15 order</span>
+													<span>₹ {{ $product->selling_price }}</span> <del>₹ {{ $product->mrp }}</del>
 												</div>
 											</div>
 										</div>
 									</div>
+                                    @endforeach
 								</div>
 							</div>
 						</div>
 						<div role="tabpanel" class="tab-pane" id="featured">
 							<div class="content-tab-product single-arrow">
 								<div class="wrap-item">
+                                    @foreach ($newProduct->where('deals', 1) as $product)
 									<div class="item">
-										<div class="item-product product-lower">
-											<div class="item-product-thumb item-thumb-product">
-												<a href="#"><img alt="" src="images/home_3/tab3.png"></a>
-												<div class="info-product-cart">
-													<div class="inner-info-product-cart">
-														<ul>
-															<li><a href="#" class="link-wishlist"><i class="fa fa-heart"></i></a></li>
-															<li><a href="#" class="link-quick-view"><i class="fa fa-search"></i></a></li>
-															<li><a href="#" class="link-compare"><i class="fa fa-external-link-square"></i></a></li>
-														</ul>
-														<a href="#" class="link-product-add-cart">Add to cart</a>
-													</div>
-												</div>
+                                        <div class="item-product product-lower">
+                                        	<a href="{{ route('details', ['product' => $product]) }}">
+                                            <div class="item-product-thumb item-thumb-product">
+                                                <img style="height: 25rem" alt="" src="{{ url('../storage/app/public/'.$product->primary_image) }}">
 											</div>
+											</a>
 											<div class="item-product-info">
-												<h3 class="title-product"><a href="#">Chemise SLimFon</a></h3>
+												<h4 class="title-product">{{ $product->title }}</h4>
 												<div class="info-product-price">
-													<span>$45.99</span> <del>$69.71</del>
-												</div>
-												<div class="info-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-o"></i>
-													<i class="fa fa-star-o"></i>
-													<i class="fa fa-star-o"></i>
-													<i class="fa fa-star-o"></i>
-												</div>
-												<div class="order-number">
-													<span>15 order</span>
+													<span>₹ {{ $product->selling_price }}</span> <del>₹ {{ $product->mrp }}</del>
 												</div>
 											</div>
 										</div>
 									</div>
+                                    @endforeach
 								</div>
 							</div>
 						</div>
@@ -671,230 +599,23 @@
 								<div class="tab-content">
 									<div role="tabpanel" class="tab-pane active" id="men1">
 										<div class="category-tab-content clearfix">
-											<div class="category-tab-main">
-												<div class="item-product product-lower">
-													<div class="item-product-thumb">
-														<a href="#"><img alt="" src="images/home_3/lead1.png"></a>
-													</div>
-													<div class="item-product-info">
-														<h3 class="title-product"><a href="#">Chemise SLimFon</a></h3>
-														<div class="info-product-price">
-															<span>$45.99</span> <del>$69.71</del>
-														</div>
-													</div>
-													<div class="product-extra-link">
-														<a class="link-add-to-cart" href="#">Add To Cart</a>
-														<a class="link-compare" href="#"><i class="fa fa-external-link-square"></i></a>
-														<a class="link-wishlist" href="#"><i class="fa fa-heart"></i></a>
-													</div>
-												</div>
-											</div>
+											@foreach ($newProduct->where('men_feature', 1)->take(8) as $product)
 											<div class="category-tab-single">
 												<div class="item-product product-lower">
+													<a href="{{ route('details', ['product' => $product]) }}">
 													<div class="item-product-thumb item-thumb-product">
-														<a href="#"><img alt="" src="images/home_3/p1.png"></a>
-														<div class="info-product-cart">
-															<div class="inner-info-product-cart">
-																<ul>
-																	<li><a class="link-wishlist" href="#"><i class="fa fa-heart"></i></a></li>
-																	<li><a class="link-quick-view" href="#"><i class="fa fa-search"></i></a></li>
-																	<li><a class="link-compare" href="#"><i class="fa fa-external-link-square"></i></a></li>
-																</ul>
-																<a class="link-product-add-cart" href="#">Add to cart</a>
-															</div>
-														</div>
+														<img alt="" src="{{ url('../storage/app/public/'.$product->primary_image) }}">
 													</div>
+													</a>
 													<div class="item-product-info">
-														<h3 class="title-product"><a href="#">Chemise SLimFon</a></h3>
+														<h3 class="title-product">{{ $product->title }}</h3>
 														<div class="info-product-price">
-															<span>$45.99</span> <del>$69.71</del>
+															<span>₹ {{ $product->selling_price }}</span> <del>₹ {{ $product->mrp }}</del>
 														</div>
 													</div>
 												</div>
-											</div>
-											<div class="category-tab-single">
-												<div class="item-product product-lower">
-													<div class="item-product-thumb item-thumb-product">
-														<a href="#"><img alt="" src="images/home_3/p2.png"></a>
-														<div class="info-product-cart">
-															<div class="inner-info-product-cart">
-																<ul>
-																	<li><a class="link-wishlist" href="#"><i class="fa fa-heart"></i></a></li>
-																	<li><a class="link-quick-view" href="#"><i class="fa fa-search"></i></a></li>
-																	<li><a class="link-compare" href="#"><i class="fa fa-external-link-square"></i></a></li>
-																</ul>
-																<a class="link-product-add-cart" href="#">Add to cart</a>
-															</div>
-														</div>
-													</div>
-													<div class="item-product-info">
-														<h3 class="title-product"><a href="#">Chemise SLimFon</a></h3>
-														<div class="info-product-price">
-															<span>$45.99</span> <del>$69.71</del>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="category-tab-single">
-												<div class="item-product product-lower">
-													<div class="item-product-thumb item-thumb-product">
-														<a href="#"><img alt="" src="images/home_3/p3.png"></a>
-														<div class="info-product-cart">
-															<div class="inner-info-product-cart">
-																<ul>
-																	<li><a class="link-wishlist" href="#"><i class="fa fa-heart"></i></a></li>
-																	<li><a class="link-quick-view" href="#"><i class="fa fa-search"></i></a></li>
-																	<li><a class="link-compare" href="#"><i class="fa fa-external-link-square"></i></a></li>
-																</ul>
-																<a class="link-product-add-cart" href="#">Add to cart</a>
-															</div>
-														</div>
-													</div>
-													<div class="item-product-info">
-														<h3 class="title-product"><a href="#">Chemise SLimFon</a></h3>
-														<div class="info-product-price">
-															<span>$45.99</span> <del>$69.71</del>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="category-tab-single">
-												<div class="item-product product-lower">
-													<div class="item-product-thumb item-thumb-product">
-														<a href="#"><img alt="" src="images/home_3/p4.png"></a>
-														<div class="info-product-cart">
-															<div class="inner-info-product-cart">
-																<ul>
-																	<li><a class="link-wishlist" href="#"><i class="fa fa-heart"></i></a></li>
-																	<li><a class="link-quick-view" href="#"><i class="fa fa-search"></i></a></li>
-																	<li><a class="link-compare" href="#"><i class="fa fa-external-link-square"></i></a></li>
-																</ul>
-																<a class="link-product-add-cart" href="#">Add to cart</a>
-															</div>
-														</div>
-													</div>
-													<div class="item-product-info">
-														<h3 class="title-product"><a href="#">Chemise SLimFon</a></h3>
-														<div class="info-product-price">
-															<span>$45.99</span> <del>$69.71</del>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div role="tabpanel" class="tab-pane" id="men2">
-										<div class="category-tab-content clearfix">
-											<div class="category-tab-main">
-												<div class="item-product product-lower">
-													<div class="item-product-thumb">
-														<a href="#"><img alt="" src="images/home_3/lead1.png"></a>
-													</div>
-													<div class="item-product-info">
-														<h3 class="title-product"><a href="#">Chemise SLimFon</a></h3>
-														<div class="info-product-price">
-															<span>$45.99</span> <del>$69.71</del>
-														</div>
-													</div>
-													<div class="product-extra-link">
-														<a class="link-add-to-cart" href="#">Add To Cart</a>
-														<a class="link-compare" href="#"><i class="fa fa-external-link-square"></i></a>
-														<a class="link-wishlist" href="#"><i class="fa fa-heart"></i></a>
-													</div>
-												</div>
-											</div>
-											<div class="category-tab-single">
-												<div class="item-product product-lower">
-													<div class="item-product-thumb item-thumb-product">
-														<a href="#"><img alt="" src="images/home_3/p4.png"></a>
-														<div class="info-product-cart">
-															<div class="inner-info-product-cart">
-																<ul>
-																	<li><a class="link-wishlist" href="#"><i class="fa fa-heart"></i></a></li>
-																	<li><a class="link-quick-view" href="#"><i class="fa fa-search"></i></a></li>
-																	<li><a class="link-compare" href="#"><i class="fa fa-external-link-square"></i></a></li>
-																</ul>
-																<a class="link-product-add-cart" href="#">Add to cart</a>
-															</div>
-														</div>
-													</div>
-													<div class="item-product-info">
-														<h3 class="title-product"><a href="#">Chemise SLimFon</a></h3>
-														<div class="info-product-price">
-															<span>$45.99</span> <del>$69.71</del>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="category-tab-single">
-												<div class="item-product product-lower">
-													<div class="item-product-thumb item-thumb-product">
-														<a href="#"><img alt="" src="images/home_3/p3.png"></a>
-														<div class="info-product-cart">
-															<div class="inner-info-product-cart">
-																<ul>
-																	<li><a class="link-wishlist" href="#"><i class="fa fa-heart"></i></a></li>
-																	<li><a class="link-quick-view" href="#"><i class="fa fa-search"></i></a></li>
-																	<li><a class="link-compare" href="#"><i class="fa fa-external-link-square"></i></a></li>
-																</ul>
-																<a class="link-product-add-cart" href="#">Add to cart</a>
-															</div>
-														</div>
-													</div>
-													<div class="item-product-info">
-														<h3 class="title-product"><a href="#">Chemise SLimFon</a></h3>
-														<div class="info-product-price">
-															<span>$45.99</span> <del>$69.71</del>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="category-tab-single">
-												<div class="item-product product-lower">
-													<div class="item-product-thumb item-thumb-product">
-														<a href="#"><img alt="" src="images/home_3/p2.png"></a>
-														<div class="info-product-cart">
-															<div class="inner-info-product-cart">
-																<ul>
-																	<li><a class="link-wishlist" href="#"><i class="fa fa-heart"></i></a></li>
-																	<li><a class="link-quick-view" href="#"><i class="fa fa-search"></i></a></li>
-																	<li><a class="link-compare" href="#"><i class="fa fa-external-link-square"></i></a></li>
-																</ul>
-																<a class="link-product-add-cart" href="#">Add to cart</a>
-															</div>
-														</div>
-													</div>
-													<div class="item-product-info">
-														<h3 class="title-product"><a href="#">Chemise SLimFon</a></h3>
-														<div class="info-product-price">
-															<span>$45.99</span> <del>$69.71</del>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="category-tab-single">
-												<div class="item-product product-lower">
-													<div class="item-product-thumb item-thumb-product">
-														<a href="#"><img alt="" src="images/home_3/p1.png"></a>
-														<div class="info-product-cart">
-															<div class="inner-info-product-cart">
-																<ul>
-																	<li><a class="link-wishlist" href="#"><i class="fa fa-heart"></i></a></li>
-																	<li><a class="link-quick-view" href="#"><i class="fa fa-search"></i></a></li>
-																	<li><a class="link-compare" href="#"><i class="fa fa-external-link-square"></i></a></li>
-																</ul>
-																<a class="link-product-add-cart" href="#">Add to cart</a>
-															</div>
-														</div>
-													</div>
-													<div class="item-product-info">
-														<h3 class="title-product"><a href="#">Chemise SLimFon</a></h3>
-														<div class="info-product-price">
-															<span>$45.99</span> <del>$69.71</del>
-														</div>
-													</div>
-												</div>
-											</div>
+											</div>	
+											@endforeach
 										</div>
 									</div>
 									<div role="tabpanel" class="tab-pane" id="men3"></div>
@@ -945,116 +666,23 @@
 								<div class="tab-content">
 									<div role="tabpanel" class="tab-pane active" id="women1">
 										<div class="category-tab-content clearfix">
-											<div class="category-tab-main">
-												<div class="item-product product-lower">
-													<div class="item-product-thumb">
-														<a href="#"><img alt="" src="images/home_3/lead2.png"></a>
-													</div>
-													<div class="item-product-info">
-														<h3 class="title-product"><a href="#">Chemise SLimFon</a></h3>
-														<div class="info-product-price">
-															<span>$45.99</span> <del>$69.71</del>
-														</div>
-													</div>
-													<div class="product-extra-link">
-														<a class="link-add-to-cart" href="#">Add To Cart</a>
-														<a class="link-compare" href="#"><i class="fa fa-external-link-square"></i></a>
-														<a class="link-wishlist" href="#"><i class="fa fa-heart"></i></a>
-													</div>
-												</div>
-											</div>
+											@foreach ($newProduct->where('women_feature', 1)->take(8) as $product)
 											<div class="category-tab-single">
 												<div class="item-product product-lower">
+													<a href="{{ route('details', ['product' => $product]) }}">
 													<div class="item-product-thumb item-thumb-product">
-														<a href="#"><img alt="" src="images/home_3/p5.png"></a>
-														<div class="info-product-cart">
-															<div class="inner-info-product-cart">
-																<ul>
-																	<li><a class="link-wishlist" href="#"><i class="fa fa-heart"></i></a></li>
-																	<li><a class="link-quick-view" href="#"><i class="fa fa-search"></i></a></li>
-																	<li><a class="link-compare" href="#"><i class="fa fa-external-link-square"></i></a></li>
-																</ul>
-																<a class="link-product-add-cart" href="#">Add to cart</a>
-															</div>
-														</div>
+														<img alt="" src="{{ url('../storage/app/public/'.$product->primary_image) }}">
 													</div>
+													</a>
 													<div class="item-product-info">
-														<h3 class="title-product"><a href="#">Chemise SLimFon</a></h3>
+														<h3 class="title-product">{{ $product->title }}</h3>
 														<div class="info-product-price">
-															<span>$45.99</span> <del>$69.71</del>
+															<span>₹ {{ $product->selling_price }}</span> <del>₹ {{ $product->mrp }}</del>
 														</div>
 													</div>
 												</div>
-											</div>
-											<div class="category-tab-single">
-												<div class="item-product product-lower">
-													<div class="item-product-thumb item-thumb-product">
-														<a href="#"><img alt="" src="images/home_3/p6.png"></a>
-														<div class="info-product-cart">
-															<div class="inner-info-product-cart">
-																<ul>
-																	<li><a class="link-wishlist" href="#"><i class="fa fa-heart"></i></a></li>
-																	<li><a class="link-quick-view" href="#"><i class="fa fa-search"></i></a></li>
-																	<li><a class="link-compare" href="#"><i class="fa fa-external-link-square"></i></a></li>
-																</ul>
-																<a class="link-product-add-cart" href="#">Add to cart</a>
-															</div>
-														</div>
-													</div>
-													<div class="item-product-info">
-														<h3 class="title-product"><a href="#">Chemise SLimFon</a></h3>
-														<div class="info-product-price">
-															<span>$45.99</span> <del>$69.71</del>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="category-tab-single">
-												<div class="item-product product-lower">
-													<div class="item-product-thumb item-thumb-product">
-														<a href="#"><img alt="" src="images/home_3/p7.png"></a>
-														<div class="info-product-cart">
-															<div class="inner-info-product-cart">
-																<ul>
-																	<li><a class="link-wishlist" href="#"><i class="fa fa-heart"></i></a></li>
-																	<li><a class="link-quick-view" href="#"><i class="fa fa-search"></i></a></li>
-																	<li><a class="link-compare" href="#"><i class="fa fa-external-link-square"></i></a></li>
-																</ul>
-																<a class="link-product-add-cart" href="#">Add to cart</a>
-															</div>
-														</div>
-													</div>
-													<div class="item-product-info">
-														<h3 class="title-product"><a href="#">Chemise SLimFon</a></h3>
-														<div class="info-product-price">
-															<span>$45.99</span> <del>$69.71</del>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="category-tab-single">
-												<div class="item-product product-lower">
-													<div class="item-product-thumb item-thumb-product">
-														<a href="#"><img alt="" src="images/home_3/p8.png"></a>
-														<div class="info-product-cart">
-															<div class="inner-info-product-cart">
-																<ul>
-																	<li><a class="link-wishlist" href="#"><i class="fa fa-heart"></i></a></li>
-																	<li><a class="link-quick-view" href="#"><i class="fa fa-search"></i></a></li>
-																	<li><a class="link-compare" href="#"><i class="fa fa-external-link-square"></i></a></li>
-																</ul>
-																<a class="link-product-add-cart" href="#">Add to cart</a>
-															</div>
-														</div>
-													</div>
-													<div class="item-product-info">
-														<h3 class="title-product"><a href="#">Chemise SLimFon</a></h3>
-														<div class="info-product-price">
-															<span>$45.99</span> <del>$69.71</del>
-														</div>
-													</div>
-												</div>
-											</div>
+											</div>	
+											@endforeach
 										</div>
 									</div>
 									<div role="tabpanel" class="tab-pane" id="women2">

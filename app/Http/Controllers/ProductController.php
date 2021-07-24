@@ -48,26 +48,27 @@ class ProductController extends Controller
 
     public function storeProduct(Request $request)
     {
-        $validatedData = $request->validate([
-        'title' => 'required',
-        'category_id' => 'required',
-        'sub_category_id' => 'required',
-        'gender_id' => 'required',
-        'brand_name' => 'required',
-        'style_name' => 'required',
-        'pattern' => 'required',
-        'origin_country' => 'required',
-        'mrp' => 'required',
-        'selling_price' => 'required',
-        'manufacturer' => 'required',
-        'product_desc' => 'required',
-        'primary_image' => 'required',
+        // return $request;
+        // $validatedData = $request->validate([
+        // 'title' => 'required',
+        // 'category_id' => 'required',
+        // 'sub_category_id' => 'required',
+        // 'gender_id' => 'required',
+        // 'brand_name' => 'required',
+        // 'style_name' => 'required',
+        // 'pattern' => 'required',
+        // 'origin_country' => 'required',
+        // 'mrp' => 'required',
+        // 'selling_price' => 'required',
+        // 'manufacturer' => 'required',
+        // 'product_desc' => 'required',
+        // 'primary_image' => 'required',
 
-        ]);
+        // ]);
 
-        if($validatedData->fails()) {
-            return Redirect::back()->withErrors($validatedData);
-        }
+        // if($validatedData->fails()) {
+        //     return Redirect::back()->withErrors($validatedData);
+        // }
 
             if($request->file()) {
                 $image = $request->primary_image;
@@ -80,7 +81,7 @@ class ProductController extends Controller
             $data->sub_category_id = $request->sub_category_id;
             $data->product_id = strtoupper('ghghjgjhhjh');
             $data->title = $request->title;
-            $data->gender_id = $request->gender;
+            $data->gender_id = $request->gender_id;
             $data->brand_name = $request->brand_name;
             $data->style_name = $request->style_name;
             $data->department = $request->department;
@@ -102,6 +103,11 @@ class ProductController extends Controller
             $data->product_desc = $request->product_desc;
             $data->key_feature = $request->key_feature;
             $data->primary_image = $imagePath;
+            $data->best_seller = $request->best_seller;
+            $data->new_arrivals = $request->new_arrivals;
+            $data->deals = $request->deals;
+            $data->men_feature = $request->men_feature;
+            $data->women_feature = $request->women_feature;
             $data->save();
 
             return redirect()->route('product.variation', ['product' => $data->id ]);
@@ -123,24 +129,24 @@ class ProductController extends Controller
 
     public function updateProduct(Request $request, Product $product)
     {
-        $validatedData = $request->validate([
-        'title' => 'required',
-        'category_id' => 'required',
-        'sub_category_id' => 'required',
-        'gender_id' => 'required',
-        'brand_name' => 'required',
-        'style_name' => 'required',
-        'pattern' => 'required',
-        'origin_country' => 'required',
-        'mrp' => 'required',
-        'selling_price' => 'required',
-        'manufacturer' => 'required',
-        'product_desc' => 'required',
-        ]);
+        // $validatedData = $request->validate([
+        // 'title' => 'required',
+        // 'category_id' => 'required',
+        // 'sub_category_id' => 'required',
+        // 'gender_id' => 'required',
+        // 'brand_name' => 'required',
+        // 'style_name' => 'required',
+        // 'pattern' => 'required',
+        // 'origin_country' => 'required',
+        // 'mrp' => 'required',
+        // 'selling_price' => 'required',
+        // 'manufacturer' => 'required',
+        // 'product_desc' => 'required',
+        // ]);
 
-        if($validatedData->fails()) {
-            return Redirect::back()->withErrors($validatedData);
-        }
+        // if($validatedData->fails()) {
+        //     return Redirect::back()->withErrors($validatedData);
+        // }
 
             if($request->file()) {
                 $image = $request->primary_image;
@@ -154,7 +160,7 @@ class ProductController extends Controller
         $data->sub_category_id = $request->sub_category_id;
         $data->product_id = strtoupper('ghghjgjhhjh');
         $data->title = $request->title;
-        $data->gender_id = $request->gender;
+        $data->gender_id = $request->gender_id;
         $data->brand_name = $request->brand_name;
         $data->style_name = $request->style_name;
         $data->department = $request->department;
@@ -175,7 +181,15 @@ class ProductController extends Controller
         $data->item_length_desc = $request->item_length_desc;
         $data->product_desc = $request->product_desc;
         $data->key_feature = $request->key_feature;
-        $data->primary_image = $imagePath;
+        if($request->file()) {
+            $data->primary_image = $imagePath;
+        }
+        $data->best_seller = $request->best_seller;
+        $data->new_arrivals = $request->new_arrivals;
+        $data->deals = $request->deals;
+        $data->men_feature = $request->men_feature;
+        $data->women_feature = $request->women_feature;
+
         $data->save();
 
         return redirect()->back()->with('success', 'Product Updated Successfullly');

@@ -11,6 +11,7 @@
                 <ul class="sidebar-menu">
                     @if (auth()->user()->role == 'admin')
                         <li><a class="sidebar-header" href="{{ route('home') }}"><i data-feather="home"></i><span>Dashboard</span></a></li>
+                        <li><a class="sidebar-header" href="{{ route('banner.index') }}"><i data-feather="home"></i><span>Banner</span></a></li>
                         <li><a class="sidebar-header" href="#"><i data-feather="box"></i> <span>Filters</span></a>
                             <ul class="sidebar-submenu">
                                 <li><a class="sidebar-header" href="{{ route('gender.index') }}"><i data-feather="home"></i><span>Gender</span></a></li>
@@ -23,9 +24,14 @@
                         </li>
                         <li><a class="sidebar-header" href="#"><i data-feather="box"></i> <span>Products</span></a>
                             <ul class="sidebar-submenu">
+                                <li><a class="sidebar-header" href="{{ route('product') }}"><i data-feather="home"></i><span>Add Product</span></a></li>
                                 <li><a class="sidebar-header" href="{{ route('active.product') }}"><i data-feather="home"></i><span>Active Products</span></a></li>
                                 <li><a class="sidebar-header" href="{{ route('retired.product') }}"><i data-feather="home"></i><span>Retired Products</span></a></li>
-                                <li><a class="sidebar-header" href="{{ route('product') }}"><i data-feather="home"></i><span>Add Product</span></a></li>
+                                <li><a class="sidebar-header" href="{{ route('best.seller') }}"><i data-feather="home"></i><span>Best Seller</span></a></li>
+                                <li><a class="sidebar-header" href="{{ route('new.arrivals') }}"><i data-feather="home"></i><span>New Arrival</span></a></li>
+                                <li><a class="sidebar-header" href="{{ route('deals') }}"><i data-feather="home"></i><span>Deals</span></a></li>
+                                <li><a class="sidebar-header" href="{{ route('men.feature') }}"><i data-feather="home"></i><span>Men Feature</span></a></li>
+                                <li><a class="sidebar-header" href="{{ route('women.feature') }}"><i data-feather="home"></i><span>Women Feature</span></a></li>
                             </ul>
                         </li>
                     @endif

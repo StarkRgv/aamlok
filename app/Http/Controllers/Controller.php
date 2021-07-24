@@ -7,6 +7,7 @@ use App\Models\SubCategory;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Brand;
+use App\Models\Banner;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -21,8 +22,9 @@ class Controller extends BaseController
     {
         $category = Category::get();
         $brands = Brand::get();
+        $banners = Banner::get();
         $subCategory = SubCategory::get();
-        $newProduct = Product::where('status', 1)->latest()->take(10)->get();
+        $newProduct = Product::where('status', 1)->get();
         $user = Auth::User();
         if(!empty($user)){
             $cartProduct = $user->products()->get();
@@ -31,6 +33,7 @@ class Controller extends BaseController
                                 'brands' => $brands,
                                 'subCategory' => $subCategory,
                                 'newProduct' => $newProduct,
+                                'banners' => $banners,
                                 'cartProduct' => $cartProduct ?? null]);
     }
 }

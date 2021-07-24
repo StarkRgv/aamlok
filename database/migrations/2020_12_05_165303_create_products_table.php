@@ -41,6 +41,11 @@ class CreateProductsTable extends Migration
             $table->text('product_desc')->nullable();
             $table->text('key_feature')->nullable();
             $table->text('primary_image')->nullable();
+            $table->integer('best_seller')->nullable();
+            $table->integer('new_arrivals')->nullable();
+            $table->integer('deals')->nullable();
+            $table->integer('men_feature')->nullable();
+            $table->integer('women_feature')->nullable();
             $table->bigInteger('status')->default(0);
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories');
